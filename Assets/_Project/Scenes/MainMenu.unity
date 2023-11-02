@@ -264,7 +264,7 @@ MonoBehaviour:
   _PlayButton: {fileID: 712519335}
   _settingsButton: {fileID: 1639755487}
   _exitGameButton: {fileID: 680864977}
-  _gameScreenRef: {fileID: 0}
+  _gameScreenRef: {fileID: 11400000, guid: 830d48cd873edcd41861cf3f358e9a11, type: 2}
   _settingsScreenRef: {fileID: 11400000, guid: c7469e28c3296be4983103c4dc27e39d, type: 2}
 --- !u!1001 &680864975
 PrefabInstance:
