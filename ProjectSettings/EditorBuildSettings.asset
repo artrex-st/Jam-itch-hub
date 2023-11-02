@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/PopUps/SettingsMenuPopUp.unity
     guid: c8fccc40f1a49ff43b71f1eb09f8824f
+  - enabled: 1
+    path: Assets/_Project/Scenes/_Game.unity
+    guid: 8b9ae901766a954479480b3e18d710e0
   m_configObjects: {}
