@@ -8,7 +8,7 @@ using JIH.SoundService;
 
 namespace Source
 {
-    public sealed class Initialize : MonoBehaviour
+    public sealed class StartupController : MonoBehaviour
     {
         [Header("Menu screen")]
         [SerializeField] private ScreenReference _firstScreenRef;

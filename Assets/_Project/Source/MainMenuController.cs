@@ -38,11 +38,11 @@ namespace Source
         private void PlayButtonClickHandler()
         {
             AsyncOperation openSceneOperationAsync = ScreenService.LoadSingleSceneAsync(_gameScreenRef);
-            openSceneOperationAsync.completed += async operation =>
-            {
-                await UniTask.Delay(TimeSpan.FromSeconds(3));
-                AsyncOperation backSceneAsync = ScreenService.LoadSingleSceneAsync(_thisScreenRef);
-            };
+            // openSceneOperationAsync.completed += async operation =>
+            // {
+            //     await UniTask.Delay(TimeSpan.FromSeconds(3));
+            //     AsyncOperation backSceneAsync = ScreenService.LoadSingleSceneAsync(_thisScreenRef);
+            // };
         }
 
         private void SettingsButtonClickHandler()
