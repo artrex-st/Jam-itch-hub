@@ -37,7 +37,6 @@ namespace JIH.SoundService
             _sfxOutput = gameObject.AddComponent<AudioSource>();
             _uiSfxOutput = gameObject.AddComponent<AudioSource>();
 
-            LoadSoundVolume();
             _musicOutput.outputAudioMixerGroup = musicGroup;
             _sfxOutput.outputAudioMixerGroup = sfxGroup;
             _uiSfxOutput.outputAudioMixerGroup = uiSfxGroup;
@@ -82,6 +81,12 @@ namespace JIH.SoundService
         public void PlayUiSfx(AudioClip clip)
         {
             _uiSfxOutput.PlayOneShot(clip);
+        }
+
+        private new void Start()
+        {
+            base.Start();
+            LoadSoundVolume();
         }
 
         private void SetMixerVolumeParameter(string key, float volumePercent)

@@ -16,9 +16,6 @@ namespace Source
         [SerializeField] private Slider _sliderSfx;
         [FoldoutGroup("Settings UiOverlay elements")]
         [SerializeField] private Slider _sliderUiSfx;
-        [FoldoutGroup("Settings config")]
-        [SerializeField] private float _soundFeedBackThreshold = 1;
-        private float _sliderValue;
 
         private void OnEnable()
         {
