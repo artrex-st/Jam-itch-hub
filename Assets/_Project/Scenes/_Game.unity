@@ -1191,11 +1191,11 @@ GameObject:
   - component: {fileID: 1907589231}
   - component: {fileID: 1907589234}
   - component: {fileID: 1907589233}
-  - component: {fileID: 1907589232}
+  - component: {fileID: 1907589235}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1215,19 +1215,6 @@ Transform:
   - {fileID: 1412528878}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1907589232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907589230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddcdba5a58e1d4a4cae7adf6dc228c18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stats: {fileID: 11400000, guid: 1078749c0b3653e49812893d64f7901b, type: 2}
 --- !u!50 &1907589233
 Rigidbody2D:
   serializedVersion: 4
@@ -1290,6 +1277,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
+--- !u!114 &1907589235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907589230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a5e6b9487567bd4982652f9310bbca4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stats: {fileID: 11400000, guid: d1dc15771c150c84caf66ad2f480aefe, type: 2}
 --- !u!1001 &1996849837
 PrefabInstance:
   m_ObjectHideFlags: 0
