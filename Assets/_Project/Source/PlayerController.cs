@@ -6,13 +6,6 @@ using UnityEngine;
 
 namespace Source
 {
-    // public struct FrameInput
-    // {
-    //     public bool JumpDown;
-    //     public bool JumpHeld;
-    //     public Vector2 Move;
-    // }
-
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class PlayerController : MonoBehaviour
     {
@@ -89,11 +82,11 @@ namespace Source
         {
             if (_grounded && _frameVelocity.y <= 0f)
             {
-                _frameVelocity.y = _stats.GroundingForce;
+                _frameVelocity.y = _stats.ArtificialGravity;
             }
             else
             {
-                float inAirGravity = _stats.FallAcceleration;
+                float inAirGravity = _stats.AirArtificialGravity;
                 _frameVelocity.y = Mathf.MoveTowards(_frameVelocity.y, -_stats.MaxFallSpeed, inAirGravity * Time.fixedDeltaTime);
             }
         }
