@@ -12,17 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2893bdfee0f3e45ab4f53c42216cc8, type: 3}
   m_Name: MoveStats
   m_EditorClassIdentifier: 
-  MaxSpeed: 14
-  Acceleration: 120
-  GroundDeceleration: 60
-  AirDeceleration: 30
-  GroundingForce: -1.5
-  MaxFallSpeed: 40
-  FallAcceleration: 110
-  JumpEndEarlyGravityModifier: 3
-  CoyoteTime: 0.15
-  JumpBuffer: 0.2
-  PlayerLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  GrounderDistance: 0.05
+  _artificialGravity: -1.5
+  _grounderDistance: 0.05

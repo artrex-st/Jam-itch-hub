@@ -1,10 +1,9 @@
-using JIH.Input;
 using Coimbra.Services.Events;
-using System;
+using JIH.Input;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Source
+namespace JIH.Player
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class PlayerController : MonoBehaviour
