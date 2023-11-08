@@ -2,6 +2,7 @@ using Coimbra.Services.Events;
 using JIH.Input;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace JIH.Player
 {
@@ -10,12 +11,14 @@ namespace JIH.Player
         public bool JumpDown;
         public bool JumpHeld;
         public Vector2 Move;
+        public float Time;
     }
 
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private ScriptableStats _stats;
+        [SerializeField] private List<ScriptableStats> _stats;
+        [SerializeField] private ScriptableStats _currentStats;
         private Rigidbody2D _rigidbody2D;
         private CapsuleCollider2D _collider2D;
         private FrameInput _frameInput = new FrameInput();
@@ -37,8 +40,8 @@ namespace JIH.Player
         private InputManager _inputManager;
         private readonly List<EventHandle> _eventHandles = new();
 
-        private bool HasBufferedJump => _bufferedJumpUsable && _time < _timeJumpWasPressed + _stats.JumpBuffer;
-        private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGrounded + _stats.CoyoteTime;
+        private bool HasBufferedJump => _bufferedJumpUsable && _time < _timeJumpWasPressed + _currentStats.JumpBuffer;
+        private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGrounded + _currentStats.CoyoteTime;
 
         private void Awake()
         {
@@ -69,14 +72,15 @@ namespace JIH.Player
             _eventHandles.Add(StartInputMoveEvent.AddListener(HandlerStartInputMoveEvent));
             _eventHandles.Add(PerformInputMoveEvent.AddListener(HandlerPerformInputMoveEvent));
             _eventHandles.Add(CancelInputMoveEvent.AddListener(HandlerCancelInputMoveEvent));
+            _currentStats = _stats[0];
         }
 
         private void CheckCollisions()
         {
             Physics2D.queriesStartInColliders = false;
 
-            bool groundHit = Physics2D.CapsuleCast(_collider2D.bounds.center, _collider2D.size, _collider2D.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer);
-            bool ceilingHit = Physics2D.CapsuleCast(_collider2D.bounds.center, _collider2D.size, _collider2D.direction, 0, Vector2.up, _stats.GrounderDistance, ~_stats.PlayerLayer);
+            bool groundHit = Physics2D.CapsuleCast(_collider2D.bounds.center, _collider2D.size, _collider2D.direction, 0, Vector2.down, _currentStats.GrounderDistance, ~_currentStats.PlayerLayer);
+            bool ceilingHit = Physics2D.CapsuleCast(_collider2D.bounds.center, _collider2D.size, _collider2D.direction, 0, Vector2.up, _currentStats.GrounderDistance, ~_currentStats.PlayerLayer);
 
             if (ceilingHit)
             {
@@ -127,7 +131,7 @@ namespace JIH.Player
             _timeJumpWasPressed = 0;
             _bufferedJumpUsable = false;
             _coyoteUsable = false;
-            _frameVelocity.y = _stats.JumpPower;
+            _frameVelocity.y = _currentStats.JumpPower;
             //Jumped?.Invoke();
         }
 
@@ -135,12 +139,12 @@ namespace JIH.Player
         {
             if (_frameInput.Move.x == 0)
             {
-                float deceleration = _grounded ? _stats.GroundDeceleration : _stats.AirDeceleration;
+                float deceleration = _grounded ? _currentStats.GroundDeceleration : _currentStats.AirDeceleration;
                 _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, 0, deceleration * Time.fixedDeltaTime);
             }
             else
             {
-                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _stats.MaxSpeed, _stats.Acceleration * Time.fixedDeltaTime);
+                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _currentStats.MaxSpeed, _currentStats.Acceleration * Time.fixedDeltaTime);
             }
         }
 
@@ -148,17 +152,17 @@ namespace JIH.Player
         {
             if (_grounded && _frameVelocity.y <= 0f)
             {
-                _frameVelocity.y = _stats.GroundingForce;
+                _frameVelocity.y = _currentStats.GroundingForce;
             }
             else
             {
-                float inAirGravity = _stats.FallAcceleration;
+                float inAirGravity = _currentStats.FallAcceleration;
                 if (_endedJumpEarly && _frameVelocity.y > 0)
                 {
-                    inAirGravity *= _stats.JumpEndEarlyGravityModifier;
+                    inAirGravity *= _currentStats.JumpEndEarlyGravityModifier;
                 }
 
-                _frameVelocity.y = Mathf.MoveTowards(_frameVelocity.y, -_stats.MaxFallSpeed, inAirGravity * Time.fixedDeltaTime);
+                _frameVelocity.y = Mathf.MoveTowards(_frameVelocity.y, -_currentStats.MaxFallSpeed, inAirGravity * Time.fixedDeltaTime);
             }
         }
 
@@ -204,10 +208,10 @@ namespace JIH.Player
 
         private void GatherInput()
         {
-            if (_stats.SnapInput)
+            if (_currentStats.SnapInput)
             {
-                _frameInput.Move.x = Mathf.Abs(_frameInput.Move.x) < _stats.HorizontalDeadZoneThreshold ? 0 : Mathf.Sign(_frameInput.Move.x);
-                _frameInput.Move.y = Mathf.Abs(_frameInput.Move.y) < _stats.VerticalDeadZoneThreshold ? 0 : Mathf.Sign(_frameInput.Move.y);
+                _frameInput.Move.x = Mathf.Abs(_frameInput.Move.x) < _currentStats.HorizontalDeadZoneThreshold ? 0 : Mathf.Sign(_frameInput.Move.x);
+                _frameInput.Move.y = Mathf.Abs(_frameInput.Move.y) < _currentStats.VerticalDeadZoneThreshold ? 0 : Mathf.Sign(_frameInput.Move.y);
             }
 
             if (_frameInput.JumpDown)
