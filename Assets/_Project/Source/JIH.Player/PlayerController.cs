@@ -24,9 +24,6 @@ namespace JIH.Player
         private FrameInput _frameInput = new FrameInput();
         private Vector2 _frameVelocity;
         private bool _cachedQueryStartInColliders;
-        // public Vector2 FrameInput => _frameInput.Move;
-        // public event Action<bool, float> GroundedChanged;
-        // public event Action Jumped;
         private float _time;
         //collisions
         private float _frameLeftGrounded = float.MinValue;
@@ -34,6 +31,8 @@ namespace JIH.Player
         //Jumping
         private bool _jumpToConsume;
         private bool _bufferedJumpUsable;
+        private bool _doubleJumpToConsume;
+        //
         private bool _endedJumpEarly;
         private bool _coyoteUsable;
         private float _timeJumpWasPressed;
@@ -93,6 +92,8 @@ namespace JIH.Player
                 _coyoteUsable = true;
                 _bufferedJumpUsable = true;
                 _endedJumpEarly = false;
+                _doubleJumpToConsume = true;
+
                 //TODO: EVENT
             }
             else if (_grounded && !groundHit)
@@ -117,7 +118,7 @@ namespace JIH.Player
                 return;
             }
 
-            if (_grounded || CanUseCoyote)
+            if (_grounded || CanUseCoyote || _doubleJumpToConsume)
             {
                 ExecuteJump();
             }
@@ -132,6 +133,11 @@ namespace JIH.Player
             _bufferedJumpUsable = false;
             _coyoteUsable = false;
             _frameVelocity.y = _currentStats.JumpPower;
+
+            if (!_grounded && _doubleJumpToConsume)
+            {
+                _doubleJumpToConsume = false;
+            }
             //Jumped?.Invoke();
         }
 
