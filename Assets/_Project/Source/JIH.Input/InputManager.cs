@@ -7,15 +7,39 @@ using UnityEngine.InputSystem;
 
 namespace JIH.Input
 {
-    public readonly partial struct RequestInputMoveEvent : IEvent
+    public readonly partial struct StartInputMoveEvent : IEvent
     {
         public readonly Vector2 MoveAxisMovement;
         public readonly bool IsMoving;
 
-        public RequestInputMoveEvent(Vector2 moveAxisMovement, bool isMoving)
+        public StartInputMoveEvent(Vector2 moveAxisMovement, bool isMoving)
         {
             MoveAxisMovement = moveAxisMovement;
             IsMoving = isMoving;
+        }
+    }
+
+    public readonly partial struct PerformInputMoveEvent : IEvent
+    {
+        public readonly Vector2 MoveAxisMovement;
+        public readonly bool IsMoving;
+
+        public PerformInputMoveEvent(Vector2 moveAxisMovement, bool isMoving)
+        {
+            MoveAxisMovement = moveAxisMovement;
+            IsMoving = isMoving;
+        }
+    }
+
+    public readonly partial struct CancelInputMoveEvent : IEvent
+    {
+        public readonly Vector2 MoveAxisMovement;
+        public readonly bool IsMoving;
+
+        public CancelInputMoveEvent(Vector2 moveAxisMovement, bool isMoving)
+        {
+            IsMoving = isMoving;
+            MoveAxisMovement = moveAxisMovement;
         }
     }
 
@@ -38,13 +62,24 @@ namespace JIH.Input
         {
             _inputsActions = new InputActions();
             _inputsActions.Player.Enable();
+            _inputsActions.Player.Move.started += MoveOnStarted;
             _inputsActions.Player.Move.performed += MoveOnPerformed;
-            _inputsActions.Player.Move.canceled += MoveOnPerformed;
+            _inputsActions.Player.Move.canceled += MoveOnCanceled;
+        }
+
+        private void MoveOnStarted(InputAction.CallbackContext context)
+        {
+            new StartInputMoveEvent(context.ReadValue<Vector2>(), context.performed).Invoke(this);
         }
 
         private void MoveOnPerformed(InputAction.CallbackContext context)
         {
-            new RequestInputMoveEvent(context.ReadValue<Vector2>(), context.performed).Invoke(this);
+            new PerformInputMoveEvent(context.ReadValue<Vector2>(), context.performed).Invoke(this);
+        }
+
+        private void MoveOnCanceled(InputAction.CallbackContext context)
+        {
+            new CancelInputMoveEvent(context.ReadValue<Vector2>(), context.performed).Invoke(this);
         }
 
         private static Vector3 ScreenToWorld(Camera camera, Vector3 position)
