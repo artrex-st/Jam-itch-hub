@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f36331a382673541b7dfcda90b987e7, type: 3}
-  m_Name: status
-  m_EditorClassIdentifier: Assembly-CSharp:_Project.Developers.Arthur:ScriptableStats
+  m_Name: base
+  m_EditorClassIdentifier: 
   PlayerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   SnapInput: 1
   VerticalDeadZoneThreshold: 0.3
   HorizontalDeadZoneThreshold: 0.1
