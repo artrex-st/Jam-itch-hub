@@ -1,4 +1,5 @@
 using Coimbra.Services.Events;
+using Cysharp.Threading.Tasks;
 using JIH.Input;
 using System;
 using System.Collections;
@@ -176,7 +177,7 @@ namespace JIH.Player
             }
         }
 
-        private IEnumerator Dash()
+        private async UniTaskVoid Dash()
         {
             isDashing = true;
 
@@ -186,7 +187,7 @@ namespace JIH.Player
             {
                 _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _axisXCache * _dashMaxSpeed, _dashAcceleration * Time.fixedDeltaTime);
                 elapsedTime += Time.deltaTime;
-                yield return null;
+                await UniTask.Yield();
             }
 
             isDashing = false;
@@ -257,13 +258,10 @@ namespace JIH.Player
 
         private void HandlerRequestInputPressEvent(ref EventContext context, in RequestInputPressEvent e)
         {
-            Debug.Log($"Start Dash");
             if (!isDashing)
             {
-                StartCoroutine(Dash());
+                Dash().Forget();
             }
-
-            Debug.Log($"End Dash");
         }
 
         private void GatherInput()
