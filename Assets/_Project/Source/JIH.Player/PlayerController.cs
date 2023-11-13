@@ -1,5 +1,6 @@
 using Coimbra.Services.Events;
 using JIH.Input;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -68,9 +69,13 @@ namespace JIH.Player
             _inputManager = gameObject.AddComponent<InputManager>();
             _cachedQueryStartInColliders = Physics2D.queriesStartInColliders;
 
-            _eventHandles.Add(StartInputMoveEvent.AddListener(HandlerStartInputMoveEvent));
-            _eventHandles.Add(PerformInputMoveEvent.AddListener(HandlerPerformInputMoveEvent));
-            _eventHandles.Add(CancelInputMoveEvent.AddListener(HandlerCancelInputMoveEvent));
+            _eventHandles.Add(StartInputXEvent.AddListener(HandlerStartInputXEvent));
+            _eventHandles.Add(PerformInputXEvent.AddListener(HandlerPerformInputXEvent));
+            _eventHandles.Add(CancelInputXEvent.AddListener(HandlerCancelInputXEvent));
+            
+            _eventHandles.Add(StartInputYEvent.AddListener(HandlerStartInputYEvent));
+            _eventHandles.Add(PerformInputYEvent.AddListener(HandlerPerformInputYEvent));
+            _eventHandles.Add(CancelInputYEvent.AddListener(HandlerCancelInputYEvent));
             _currentStats = _stats[0];
         }
 
@@ -177,39 +182,44 @@ namespace JIH.Player
             _rigidbody2D.velocity = _frameVelocity;
         }
 
-        private void HandlerStartInputMoveEvent(ref EventContext context, in StartInputMoveEvent e)
+        private void HandlerStartInputXEvent(ref EventContext context, in StartInputXEvent e)
         {
-            _frameInput = new FrameInput()
-            {
-                JumpDown = e.MoveAxisMovement.y > 0,
-                JumpHeld = false,
-                Move = e.MoveAxisMovement
-            };
-
+            _frameInput.Move.x = e.AxisX;
             GatherInput();
         }
 
-        private void HandlerPerformInputMoveEvent(ref EventContext context, in PerformInputMoveEvent e)
+        private void HandlerPerformInputXEvent(ref EventContext context, in PerformInputXEvent e)
         {
-            _frameInput = new FrameInput()
-            {
-                JumpDown = e.MoveAxisMovement.y > 0,
-                JumpHeld = e.MoveAxisMovement.y > 0,
-                Move = e.MoveAxisMovement
-            };
-
+            _frameInput.Move.x = e.AxisX;
             GatherInput();
         }
 
-        private void HandlerCancelInputMoveEvent(ref EventContext context, in CancelInputMoveEvent e)
+        private void HandlerCancelInputXEvent(ref EventContext context, in CancelInputXEvent e)
         {
-            _frameInput = new FrameInput()
-            {
-                JumpDown = false,
-                JumpHeld = false,
-                Move = e.MoveAxisMovement
-            };
+            _frameInput.Move.x = e.AxisX;
+        }
 
+        private void HandlerStartInputYEvent(ref EventContext context, in StartInputYEvent e)
+        {
+            _frameInput.Move.y = e.AxisY;
+            _frameInput.JumpDown = true;
+            _frameInput.JumpHeld = false;
+            GatherInput();
+        }
+
+        private void HandlerPerformInputYEvent(ref EventContext context, in PerformInputYEvent e)
+        {
+            _frameInput.Move.y = e.AxisY;
+            _frameInput.JumpDown = true;
+            _frameInput.JumpHeld = true;
+            GatherInput();
+        }
+
+        private void HandlerCancelInputYEvent(ref EventContext context, in CancelInputYEvent e)
+        {
+            _frameInput.Move.y = e.AxisY;
+            _frameInput.JumpDown = false;
+            _frameInput.JumpHeld = false;
         }
 
         private void GatherInput()

@@ -7,39 +7,75 @@ using UnityEngine.InputSystem;
 
 namespace JIH.Input
 {
-    public readonly partial struct StartInputMoveEvent : IEvent
+    public readonly partial struct StartInputXEvent : IEvent
     {
-        public readonly Vector2 MoveAxisMovement;
+        public readonly float AxisX;
         public readonly bool IsMoving;
 
-        public StartInputMoveEvent(Vector2 moveAxisMovement, bool isMoving)
+        public StartInputXEvent(float axisX, bool isMoving)
         {
-            MoveAxisMovement = moveAxisMovement;
+            AxisX = axisX;
             IsMoving = isMoving;
         }
     }
 
-    public readonly partial struct PerformInputMoveEvent : IEvent
+    public readonly partial struct PerformInputXEvent : IEvent
     {
-        public readonly Vector2 MoveAxisMovement;
+        public readonly float AxisX;
         public readonly bool IsMoving;
 
-        public PerformInputMoveEvent(Vector2 moveAxisMovement, bool isMoving)
+        public PerformInputXEvent(float axisX, bool isMoving)
         {
-            MoveAxisMovement = moveAxisMovement;
+            AxisX = axisX;
             IsMoving = isMoving;
         }
     }
 
-    public readonly partial struct CancelInputMoveEvent : IEvent
+    public readonly partial struct CancelInputXEvent : IEvent
     {
-        public readonly Vector2 MoveAxisMovement;
+        public readonly float AxisX;
         public readonly bool IsMoving;
 
-        public CancelInputMoveEvent(Vector2 moveAxisMovement, bool isMoving)
+        public CancelInputXEvent(float axisX, bool isMoving)
         {
             IsMoving = isMoving;
-            MoveAxisMovement = moveAxisMovement;
+            AxisX = axisX;
+        }
+    }
+
+    public readonly partial struct StartInputYEvent : IEvent
+    {
+        public readonly float AxisY;
+        public readonly bool IsMoving;
+
+        public StartInputYEvent(float axisY, bool isMoving)
+        {
+            AxisY = axisY;
+            IsMoving = isMoving;
+        }
+    }
+
+    public readonly partial struct PerformInputYEvent : IEvent
+    {
+        public readonly float AxisY;
+        public readonly bool IsMoving;
+
+        public PerformInputYEvent(float axisY, bool isMoving)
+        {
+            AxisY = axisY;
+            IsMoving = isMoving;
+        }
+    }
+
+    public readonly partial struct CancelInputYEvent : IEvent
+    {
+        public readonly float AxisY;
+        public readonly bool IsMoving;
+
+        public CancelInputYEvent(float axisY, bool isMoving)
+        {
+            IsMoving = isMoving;
+            AxisY = axisY;
         }
     }
 
@@ -62,24 +98,44 @@ namespace JIH.Input
         {
             _inputsActions = new InputActions();
             _inputsActions.Player.Enable();
-            _inputsActions.Player.Move.started += MoveOnStarted;
-            _inputsActions.Player.Move.performed += MoveOnPerformed;
-            _inputsActions.Player.Move.canceled += MoveOnCanceled;
+
+            _inputsActions.Player.Axis_X.started += MoveXStarted;
+            _inputsActions.Player.Axis_X.performed += MoveXPerformed;
+            _inputsActions.Player.Axis_X.canceled += MoveXCanceled;
+
+            _inputsActions.Player.Axis_Y.started += MoveYStarted;
+            _inputsActions.Player.Axis_Y.performed += MoveYPerformed;
+            _inputsActions.Player.Axis_Y.canceled += MoveYCanceled;
         }
 
-        private void MoveOnStarted(InputAction.CallbackContext context)
+        private void MoveXStarted(InputAction.CallbackContext context)
         {
-            new StartInputMoveEvent(context.ReadValue<Vector2>(), context.performed).Invoke(this);
+            new StartInputXEvent(context.ReadValue<float>(), context.performed).Invoke(this);
         }
 
-        private void MoveOnPerformed(InputAction.CallbackContext context)
+        private void MoveXPerformed(InputAction.CallbackContext context)
         {
-            new PerformInputMoveEvent(context.ReadValue<Vector2>(), context.performed).Invoke(this);
+            new PerformInputXEvent(context.ReadValue<float>(), context.performed).Invoke(this);
         }
 
-        private void MoveOnCanceled(InputAction.CallbackContext context)
+        private void MoveXCanceled(InputAction.CallbackContext context)
         {
-            new CancelInputMoveEvent(context.ReadValue<Vector2>(), context.performed).Invoke(this);
+            new CancelInputXEvent(context.ReadValue<float>(), context.performed).Invoke(this);
+        }
+
+        private void MoveYStarted(InputAction.CallbackContext context)
+        {
+            new StartInputYEvent(context.ReadValue<float>(), context.performed).Invoke(this);
+        }
+
+        private void MoveYPerformed(InputAction.CallbackContext context)
+        {
+            new PerformInputYEvent(context.ReadValue<float>(), context.performed).Invoke(this);
+        }
+
+        private void MoveYCanceled(InputAction.CallbackContext context)
+        {
+            new CancelInputYEvent(context.ReadValue<float>(), context.performed).Invoke(this);
         }
 
         private static Vector3 ScreenToWorld(Camera camera, Vector3 position)
@@ -90,7 +146,8 @@ namespace JIH.Input
 
         private void Dispose()
         {
-            _inputsActions.Player.Move.Dispose();
+            _inputsActions.Player.Axis_X.Dispose();
+            _inputsActions.Player.Axis_Y.Dispose();
 
             IEventService eventService = ServiceLocator.GetChecked<IEventService>();
 
