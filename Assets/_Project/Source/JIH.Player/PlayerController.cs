@@ -1,9 +1,9 @@
 using Coimbra.Services.Events;
 using JIH.Input;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace JIH.Player
 {
@@ -20,12 +20,20 @@ namespace JIH.Player
     {
         [SerializeField] private List<ScriptableStats> _stats;
         [SerializeField] private ScriptableStats _currentStats;
+        // dash
+        [SerializeField] private float _dashAcceleration = 600;
+        [SerializeField] private float _dashMaxSpeed = 42;
+        [SerializeField] private float _dashDuration = 0.7f;
+        [SerializeField] private float _dashCooldown = 2f;
+        private bool isDashing = false;
+        // end dash
         private Rigidbody2D _rigidbody2D;
         private CapsuleCollider2D _collider2D;
         private FrameInput _frameInput = new FrameInput();
         private Vector2 _frameVelocity;
         private bool _cachedQueryStartInColliders;
         private float _time;
+        private float _axisXCache;
         //collisions
         private float _frameLeftGrounded = float.MinValue;
         private bool _grounded;
@@ -72,10 +80,12 @@ namespace JIH.Player
             _eventHandles.Add(StartInputXEvent.AddListener(HandlerStartInputXEvent));
             _eventHandles.Add(PerformInputXEvent.AddListener(HandlerPerformInputXEvent));
             _eventHandles.Add(CancelInputXEvent.AddListener(HandlerCancelInputXEvent));
-            
+
             _eventHandles.Add(StartInputYEvent.AddListener(HandlerStartInputYEvent));
             _eventHandles.Add(PerformInputYEvent.AddListener(HandlerPerformInputYEvent));
             _eventHandles.Add(CancelInputYEvent.AddListener(HandlerCancelInputYEvent));
+            
+            _eventHandles.Add(RequestInputPressEvent.AddListener(HandlerRequestInputPressEvent));
             _currentStats = _stats[0];
         }
 
@@ -148,6 +158,13 @@ namespace JIH.Player
 
         private void HandleDirection()
         {
+            if (isDashing)
+            {
+                Debug.Log($"Handle Dash");
+                return;
+            }
+
+            Debug.Log($"Handle Direction");
             if (_frameInput.Move.x == 0)
             {
                 float deceleration = _grounded ? _currentStats.GroundDeceleration : _currentStats.AirDeceleration;
@@ -157,6 +174,22 @@ namespace JIH.Player
             {
                 _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _currentStats.MaxSpeed, _currentStats.Acceleration * Time.fixedDeltaTime);
             }
+        }
+
+        private IEnumerator Dash()
+        {
+            isDashing = true;
+
+            float elapsedTime = 0f;
+
+            while (elapsedTime < _dashDuration)
+            {
+                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _axisXCache * _dashMaxSpeed, _dashAcceleration * Time.fixedDeltaTime);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            isDashing = false;
         }
 
         private void HandleGravity()
@@ -173,7 +206,7 @@ namespace JIH.Player
                     inAirGravity *= _currentStats.JumpEndEarlyGravityModifier;
                 }
 
-                _frameVelocity.y = Mathf.MoveTowards(_frameVelocity.y, -_currentStats.MaxFallSpeed, inAirGravity * Time.fixedDeltaTime);
+                _frameVelocity.y = isDashing ? 0 : Mathf.MoveTowards(_frameVelocity.y, -_currentStats.MaxFallSpeed, inAirGravity * Time.fixedDeltaTime);
             }
         }
 
@@ -184,13 +217,13 @@ namespace JIH.Player
 
         private void HandlerStartInputXEvent(ref EventContext context, in StartInputXEvent e)
         {
-            _frameInput.Move.x = e.AxisX;
+            _axisXCache = _frameInput.Move.x = e.AxisX;
             GatherInput();
         }
 
         private void HandlerPerformInputXEvent(ref EventContext context, in PerformInputXEvent e)
         {
-            _frameInput.Move.x = e.AxisX;
+            _axisXCache = _frameInput.Move.x = e.AxisX;
             GatherInput();
         }
 
@@ -202,7 +235,7 @@ namespace JIH.Player
         private void HandlerStartInputYEvent(ref EventContext context, in StartInputYEvent e)
         {
             _frameInput.Move.y = e.AxisY;
-            _frameInput.JumpDown = true;
+            _frameInput.JumpDown = e.AxisY > 0;
             _frameInput.JumpHeld = false;
             GatherInput();
         }
@@ -210,16 +243,27 @@ namespace JIH.Player
         private void HandlerPerformInputYEvent(ref EventContext context, in PerformInputYEvent e)
         {
             _frameInput.Move.y = e.AxisY;
-            _frameInput.JumpDown = true;
-            _frameInput.JumpHeld = true;
+            _frameInput.JumpDown = e.AxisY > 0;
+            _frameInput.JumpHeld = e.AxisY > 0;
             GatherInput();
         }
 
         private void HandlerCancelInputYEvent(ref EventContext context, in CancelInputYEvent e)
         {
             _frameInput.Move.y = e.AxisY;
-            _frameInput.JumpDown = false;
-            _frameInput.JumpHeld = false;
+            _frameInput.JumpDown = e.AxisY > 0;
+            _frameInput.JumpHeld = e.AxisY > 0;
+        }
+
+        private void HandlerRequestInputPressEvent(ref EventContext context, in RequestInputPressEvent e)
+        {
+            Debug.Log($"Start Dash");
+            if (!isDashing)
+            {
+                StartCoroutine(Dash());
+            }
+
+            Debug.Log($"End Dash");
         }
 
         private void GatherInput()

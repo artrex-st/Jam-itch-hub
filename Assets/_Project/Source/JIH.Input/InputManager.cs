@@ -79,6 +79,8 @@ namespace JIH.Input
         }
     }
 
+    public readonly partial struct RequestInputPressEvent : IEvent { }
+
     public class InputManager : MonoBehaviour
     {
         private InputActions _inputsActions;
@@ -106,6 +108,8 @@ namespace JIH.Input
             _inputsActions.Player.Axis_Y.started += MoveYStarted;
             _inputsActions.Player.Axis_Y.performed += MoveYPerformed;
             _inputsActions.Player.Axis_Y.canceled += MoveYCanceled;
+            
+            _inputsActions.Player.Press.started += PressStarted;
         }
 
         private void MoveXStarted(InputAction.CallbackContext context)
@@ -136,6 +140,11 @@ namespace JIH.Input
         private void MoveYCanceled(InputAction.CallbackContext context)
         {
             new CancelInputYEvent(context.ReadValue<float>(), context.performed).Invoke(this);
+        }
+
+        private void PressStarted(InputAction.CallbackContext context)
+        {
+            new RequestInputPressEvent().Invoke(this);
         }
 
         private static Vector3 ScreenToWorld(Camera camera, Vector3 position)
