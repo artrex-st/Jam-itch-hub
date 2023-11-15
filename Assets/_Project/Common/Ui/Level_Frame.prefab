@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 4641196924426541633}
   - component: {fileID: 8051792556899839433}
   - component: {fileID: 3155419364233193082}
+  - component: {fileID: -3002482121708759828}
   m_Layer: 5
   m_Name: Level_Frame
   m_TagString: Untagged
@@ -245,6 +246,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-3002482121708759828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2283573323385420947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c3378405047e7146a6ac920acb5c71c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _levelSprite: {fileID: 3220820167459532712}
+  _levelName: {fileID: 3330901939377989437}
+  _levelSceneReference: {fileID: 0}
 --- !u!1 &7836475441227684219
 GameObject:
   m_ObjectHideFlags: 0

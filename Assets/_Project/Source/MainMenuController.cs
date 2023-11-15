@@ -3,16 +3,19 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using JIH.ScreenService;
+using UnityEngine.Serialization;
 
 namespace Source
 {
     public sealed class MainMenuController : BaseScreen
     {
-        [SerializeField] private Button _PlayButton;
+        [SerializeField] private Button _playButton;
+        [SerializeField] private Button _levelSelectButton;
         [SerializeField] private Button _settingsButton;
         [SerializeField] private Button _exitGameButton;
         [Header("Screen Reference")]
         [SerializeField] private ScreenReference _gameScreenRef;
+        [SerializeField] private ScreenReference _levelSelectScreenRef;
         [SerializeField] private ScreenReference _settingsScreenRef;
 
         private void OnEnable()
@@ -28,7 +31,8 @@ namespace Source
         private new void Initialize()
         {
             base.Initialize();
-            _PlayButton.onClick.AddListener(PlayButtonClickHandler);
+            _playButton.onClick.AddListener(PlayButtonClickHandler);
+            _levelSelectButton.onClick.AddListener(LevelSelectButtonCLickHandler);
             _settingsButton.onClick.AddListener(SettingsButtonClickHandler);
             _exitGameButton.onClick.AddListener(ExitGameButtonClickHandler);
 
@@ -43,6 +47,11 @@ namespace Source
             //     await UniTask.Delay(TimeSpan.FromSeconds(3));
             //     AsyncOperation backSceneAsync = ScreenService.LoadSingleSceneAsync(_thisScreenRef);
             // };
+        }
+
+        private void LevelSelectButtonCLickHandler()
+        {
+            AsyncOperation openSceneOperationAsync = ScreenService.LoadSingleSceneAsync(_levelSelectScreenRef);
         }
 
         private void SettingsButtonClickHandler()

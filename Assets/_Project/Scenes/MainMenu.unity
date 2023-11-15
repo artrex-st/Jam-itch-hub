@@ -261,10 +261,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _thisScreenRef: {fileID: 11400000, guid: 20e564175325d5740ae5e6feb9dbfcca, type: 2}
-  _PlayButton: {fileID: 712519335}
+  _playButton: {fileID: 712519335}
+  _levelSelectButton: {fileID: 2062459689}
   _settingsButton: {fileID: 1639755487}
   _exitGameButton: {fileID: 680864977}
   _gameScreenRef: {fileID: 11400000, guid: 830d48cd873edcd41861cf3f358e9a11, type: 2}
+  _levelSelectScreenRef: {fileID: 11400000, guid: 6c26978fec43ac9469bb9efb9a1404ed, type: 2}
   _settingsScreenRef: {fileID: 11400000, guid: c7469e28c3296be4983103c4dc27e39d, type: 2}
 --- !u!1001 &680864975
 PrefabInstance:
@@ -1020,11 +1022,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6610262533501722441, guid: be75cc3d314266e48ad7d80c14a132a3, type: 3}
       propertyPath: m_Name
-      value: FaseSelect_Button
+      value: LevelSelect_Button
       objectReference: {fileID: 0}
     - target: {fileID: 6686724662015092135, guid: be75cc3d314266e48ad7d80c14a132a3, type: 3}
       propertyPath: m_text
-      value: Fase Select
+      value: Level Select
       objectReference: {fileID: 0}
     - target: {fileID: 6686724662015092135, guid: be75cc3d314266e48ad7d80c14a132a3, type: 3}
       propertyPath: m_enableAutoSizing
@@ -1040,6 +1042,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2739514366931639643, guid: be75cc3d314266e48ad7d80c14a132a3, type: 3}
   m_PrefabInstance: {fileID: 2062459687}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2062459689 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6403423598099727556, guid: be75cc3d314266e48ad7d80c14a132a3, type: 3}
+  m_PrefabInstance: {fileID: 2062459687}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7364620597285897550
 PrefabInstance:
   m_ObjectHideFlags: 0
