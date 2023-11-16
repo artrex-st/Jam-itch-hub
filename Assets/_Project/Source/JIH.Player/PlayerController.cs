@@ -1,3 +1,4 @@
+using Coimbra.Services;
 using Coimbra.Services.Events;
 using Cysharp.Threading.Tasks;
 using JIH.Input;
@@ -63,9 +64,14 @@ namespace JIH.Player
         private bool HasBufferedJump => _bufferedJumpUsable && _time < _timeJumpWasPressed + _currentStats.JumpBuffer;
         private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGrounded + _currentStats.CoyoteTime;
 
-        private void Awake()
+        private void OnEnable()
         {
             Initialize();
+        }
+
+        private void OnDisable()
+        {
+            Dispose();
         }
 
         private void Update()
@@ -289,6 +295,18 @@ namespace JIH.Player
                 _jumpToConsume = true;
                 _timeJumpWasPressed = _time;
             }
+        }
+
+        private void Dispose()
+        {
+            IEventService eventService = ServiceLocator.GetChecked<IEventService>();
+
+            foreach (EventHandle eventHandle in _eventHandles)
+            {
+                eventService.RemoveListener(eventHandle);
+            }
+
+            _eventHandles.Clear();
         }
     }
 }
