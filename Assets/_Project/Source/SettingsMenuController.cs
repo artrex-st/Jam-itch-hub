@@ -8,6 +8,8 @@ namespace Source
     public class SettingsMenuController : BaseScreen
     {
         [SerializeField] private Button _closeButton;
+        [SerializeField] private Button _mainMenuButton;
+        [SerializeField] private ScreenReference _mainMenuScreenRef;
         [FoldoutGroup("Settings UiOverlay elements")]
         [SerializeField] private Slider _sliderMaster;
         [FoldoutGroup("Settings UiOverlay elements")]
@@ -31,12 +33,19 @@ namespace Source
         {
             base.Initialize();
             _closeButton.onClick.AddListener(CloseButtonClickHandler);
+            _mainMenuButton.onClick.AddListener(MainMenuButtonClickHandler);
+
             _sliderMaster.onValueChanged.AddListener(OnMasterVolumeChangeHandler);
             _sliderMusic.onValueChanged.AddListener(OnMusicVolumeChangeHandler);
             _sliderSfx.onValueChanged.AddListener(OnSfxVolumeChangeHandler);
             _sliderUiSfx.onValueChanged.AddListener(OnUiSfxVolumeChangeHandler);
 
             SyncSlidersFromMixers();
+        }
+
+        private void MainMenuButtonClickHandler()
+        {
+            ScreenService.LoadSingleSceneAsync(_mainMenuScreenRef);
         }
 
         private void OnMasterVolumeChangeHandler(float value)
