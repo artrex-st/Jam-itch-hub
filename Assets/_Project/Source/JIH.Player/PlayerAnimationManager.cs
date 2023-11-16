@@ -38,11 +38,14 @@ namespace JIH.Player
             {
                 _playerSprite.flipX = _playerDirection < 0;
             }
+
+            _playerAnimator.SetBool(Animator.StringToHash("IsWalking"), _playerDirection != 0);
         }
 
         private void HandlerCancelInputXEvent(ref EventContext context, in CancelInputXEvent e)
         {
             _playerDirection = e.AxisX;
+            _playerAnimator.SetBool(Animator.StringToHash("IsWalking"), _playerDirection != 0);
         }
 
         private void Dispose()
