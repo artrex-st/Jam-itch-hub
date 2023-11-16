@@ -21,8 +21,8 @@ namespace JIH
     public class GamePlayUiController : BaseScreen
     {
         [SerializeField] private TextMeshProUGUI _frameTitle;
-        [SerializeField] private Button _settingsButton;
-        [SerializeField] private ScreenReference _settingsScreenRef;
+        [SerializeField] private Button _pauseMenuButton;
+        [SerializeField] private ScreenReference _pauseMenuScreenRef;
 
         private void OnEnable()
         {
@@ -38,7 +38,7 @@ namespace JIH
         {
             base.Initialize();
 
-            _settingsButton.onClick.AddListener(SettingsButtonClickHandler);
+            _pauseMenuButton.onClick.AddListener(SettingsButtonClickHandler);
 
             EventHandles.Add(RequestLevelNameEvent.AddListener(RequestLevelNameEventHandler));
         }
@@ -51,7 +51,7 @@ namespace JIH
         private void SettingsButtonClickHandler()
         {
             //TODO: pause the game event
-            ScreenService.LoadAdditiveSceneAsync(_settingsScreenRef);
+            ScreenService.LoadAdditiveSceneAsync(_pauseMenuScreenRef);
         }
     }
 }

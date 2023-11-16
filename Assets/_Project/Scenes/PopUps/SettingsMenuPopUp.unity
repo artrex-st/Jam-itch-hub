@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &143352976
 RectTransform:
   m_ObjectHideFlags: 0
@@ -158,10 +158,10 @@ RectTransform:
   - {fileID: 1714644942}
   m_Father: {fileID: 533442919}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 960, y: -933.0204}
+  m_SizeDelta: {x: 1820, y: 193.95918}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &143352977
 MonoBehaviour:
@@ -711,7 +711,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7221912381546668155, guid: 0ee71ca885e6d6a49807bacbd50fef3c, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -754,8 +754,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _thisScreenRef: {fileID: 11400000, guid: c7469e28c3296be4983103c4dc27e39d, type: 2}
   _closeButton: {fileID: 289453746}
-  _mainMenuButton: {fileID: 1714644943}
-  _mainMenuScreenRef: {fileID: 11400000, guid: 20e564175325d5740ae5e6feb9dbfcca, type: 2}
   _sliderMaster: {fileID: 6064402242330736067}
   _sliderMusic: {fileID: 225438469}
   _sliderSfx: {fileID: 721028486}
@@ -1320,7 +1318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2739514366931639643, guid: be75cc3d314266e48ad7d80c14a132a3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2739514366931639643, guid: be75cc3d314266e48ad7d80c14a132a3, type: 3}
       propertyPath: m_AnchorMin.x
@@ -1328,15 +1326,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2739514366931639643, guid: be75cc3d314266e48ad7d80c14a132a3, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2739514366931639643, guid: be75cc3d314266e48ad7d80c14a132a3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 2739514366931639643, guid: be75cc3d314266e48ad7d80c14a132a3, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 2739514366931639643, guid: be75cc3d314266e48ad7d80c14a132a3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1368,11 +1366,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2739514366931639643, guid: be75cc3d314266e48ad7d80c14a132a3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 1135
       objectReference: {fileID: 0}
     - target: {fileID: 2739514366931639643, guid: be75cc3d314266e48ad7d80c14a132a3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -96.97959
       objectReference: {fileID: 0}
     - target: {fileID: 2739514366931639643, guid: be75cc3d314266e48ad7d80c14a132a3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1416,17 +1414,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2739514366931639643, guid: be75cc3d314266e48ad7d80c14a132a3, type: 3}
   m_PrefabInstance: {fileID: 1714644941}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1714644943 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6403423598099727556, guid: be75cc3d314266e48ad7d80c14a132a3, type: 3}
-  m_PrefabInstance: {fileID: 1714644941}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2071343910
 GameObject:
   m_ObjectHideFlags: 0
