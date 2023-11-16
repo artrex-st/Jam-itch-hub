@@ -1,4 +1,5 @@
 using Coimbra.Services.Events;
+using Cysharp.Threading.Tasks;
 using JIH.Levels;
 using JIH.ScreenService;
 using Source;
@@ -17,6 +18,7 @@ namespace JIH
         [SerializeField] private Transform _levelFrameParent;
         [SerializeField] private Button _backButton;
         [SerializeField] private ScreenReference _mainMenuScreenRef;
+        [SerializeField] private ScreenReference _gamePlayUiScreenReference;
 
         private void OnEnable()
         {
@@ -55,7 +57,15 @@ namespace JIH
 
         private void HandlerRequestLoadingLevelEvent(ref EventContext context, in RequestLoadingLevelEvent e)
         {
-            ScreenService.LoadSingleSceneAsync(e.SceneReference);
+            AsyncOperation loadingOperation = ScreenService.LoadSingleSceneAsync(e.SceneReference);
+            string sceneName = string.IsNullOrEmpty(e.LevelName) ? e.SceneReference.SceneName : e.LevelName;
+
+            loadingOperation.completed += async operation =>
+            {
+                await ScreenService.LoadAdditiveSceneAsync(_gamePlayUiScreenReference);
+                new RequestLevelNameEvent(sceneName).Invoke(this);
+            };
         }
+
     }
 }

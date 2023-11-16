@@ -3,7 +3,6 @@ using Sirenix.OdinInspector;
 using Source;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace JIH.Levels
@@ -11,10 +10,12 @@ namespace JIH.Levels
     public readonly partial struct RequestLoadingLevelEvent : IEvent
     {
         public readonly ScreenReference SceneReference;
+        public readonly string LevelName;
 
-        public RequestLoadingLevelEvent(ScreenReference sceneReference)
+        public RequestLoadingLevelEvent(ScreenReference sceneReference, string levelName)
         {
             SceneReference = sceneReference;
+            LevelName = levelName;
         }
     }
 
@@ -40,7 +41,7 @@ namespace JIH.Levels
             _levelSprite.sprite = levelFrameStruct.levelSprite;
             _levelName.text = levelFrameStruct.levelName;
             _levelSceneReference = levelFrameStruct.screenReference;
-            _frameButton.onClick.AddListener(() => new RequestLoadingLevelEvent(_levelSceneReference).Invoke(this));
+            _frameButton.onClick.AddListener(() => new RequestLoadingLevelEvent(_levelSceneReference, _levelName.text).Invoke(this));
         }
     }
 }
