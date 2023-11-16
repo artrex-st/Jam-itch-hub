@@ -1,8 +1,7 @@
 using Coimbra.Services.Events;
 using Cysharp.Threading.Tasks;
 using JIH.Input;
-using System;
-using System.Collections;
+using JIH.Levels;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +16,7 @@ namespace JIH.Player
     }
 
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IScalable
     {
         [SerializeField] private List<ScriptableStats> _stats;
         [SerializeField] private ScriptableStats _currentStats;
