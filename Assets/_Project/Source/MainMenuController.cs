@@ -3,9 +3,9 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using JIH.ScreenService;
-using UnityEngine.Serialization;
+using Source;
 
-namespace Source
+namespace JIH
 {
     public sealed class MainMenuController : BaseScreen
     {

@@ -31,6 +31,7 @@ namespace Source
         {
             base.Initialize();
             _closeButton.onClick.AddListener(CloseButtonClickHandler);
+
             _sliderMaster.onValueChanged.AddListener(OnMasterVolumeChangeHandler);
             _sliderMusic.onValueChanged.AddListener(OnMusicVolumeChangeHandler);
             _sliderSfx.onValueChanged.AddListener(OnSfxVolumeChangeHandler);
