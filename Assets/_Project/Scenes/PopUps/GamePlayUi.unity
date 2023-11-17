@@ -515,6 +515,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7708121312218740380, guid: 0ee71ca885e6d6a49807bacbd50fef3c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8339471107483924923, guid: 0ee71ca885e6d6a49807bacbd50fef3c, type: 3}
       propertyPath: m_ChildAlignment
       value: 1
