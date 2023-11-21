@@ -13,6 +13,7 @@ namespace JIH.Player
         private SpriteRenderer _playerSprite => GetComponent<SpriteRenderer>();
         [SerializeField] private float _playerDirection;
         private readonly List<EventHandle> _eventHandles = new();
+        private static readonly int Jump = Animator.StringToHash("Jump");
 
         private void OnEnable()
         {
@@ -28,6 +29,18 @@ namespace JIH.Player
         {
             _eventHandles.Add(PerformInputXEvent.AddListener(HandlerPerformInputXEvent));
             _eventHandles.Add(CancelInputXEvent.AddListener(HandlerCancelInputXEvent));
+            _eventHandles.Add(RequestPlayerAirEvent.AddListener(RequestPlayerJumpEventHandler));
+            _eventHandles.Add(RequestJumpEvent.AddListener(HandlerRequestJumpEvent));
+        }
+
+        private void HandlerRequestJumpEvent(ref EventContext context, in RequestJumpEvent e)
+        {
+            _playerAnimator.SetTrigger(Jump);
+        }
+
+        private void RequestPlayerJumpEventHandler(ref EventContext context, in RequestPlayerAirEvent e)
+        {
+            _playerAnimator.SetBool(Animator.StringToHash("IsJumping"), e.IsJumping);
         }
 
         private void HandlerPerformInputXEvent(ref EventContext context, in PerformInputXEvent e)

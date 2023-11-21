@@ -127,15 +127,14 @@ namespace JIH.Player
                 _endedJumpEarly = false;
                 _doubleJumpToConsume = true;
 
-                //TODO: EVENT
             }
             else if (_grounded && !groundHit)
             {
                 _grounded = false;
                 _frameLeftGrounded = _time;
-                //TODO: EVENT
             }
 
+            new RequestPlayerAirEvent(!_grounded).Invoke(this);
             Physics2D.queriesStartInColliders = _cachedQueryStartInColliders;
         }
 
@@ -171,7 +170,8 @@ namespace JIH.Player
             {
                 _doubleJumpToConsume = false;
             }
-            //Jumped?.Invoke();
+
+            new RequestJumpEvent().Invoke(this);
         }
 
         private void HandleDirection()
