@@ -42,21 +42,16 @@ namespace JIH
         private void PlayButtonClickHandler()
         {
             AsyncOperation openSceneOperationAsync = ScreenService.LoadSingleSceneAsync(_gameScreenRef);
-            // openSceneOperationAsync.completed += async operation =>
-            // {
-            //     await UniTask.Delay(TimeSpan.FromSeconds(3));
-            //     AsyncOperation backSceneAsync = ScreenService.LoadSingleSceneAsync(_thisScreenRef);
-            // };
         }
 
         private void LevelSelectButtonCLickHandler()
         {
-            AsyncOperation openSceneOperationAsync = ScreenService.LoadSingleSceneAsync(_levelSelectScreenRef);
+            ScreenService.LoadSingleScene(_levelSelectScreenRef);
         }
 
         private void SettingsButtonClickHandler()
         {
-            AsyncOperation openSceneOperationAsync = ScreenService.LoadAdditiveSceneAsync(_settingsScreenRef);
+            ScreenService.LoadAdditiveSceneAsync(_settingsScreenRef);
         }
 
         private void ExitGameButtonClickHandler()

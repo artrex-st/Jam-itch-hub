@@ -386,24 +386,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _thisScreenRef: {fileID: 11400000, guid: 6c26978fec43ac9469bb9efb9a1404ed, type: 2}
-  _levels:
-  - levelSprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-    levelName: Tutorial
-    screenReference: {fileID: 11400000, guid: e7044b5c8638cf54294fc06a1fe9e08f, type: 2}
-  - levelSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-    levelName: Level 1
-    screenReference: {fileID: 11400000, guid: 179bb707f550fdf4b9e963bfebb2486c, type: 2}
-  - levelSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-    levelName: Segundo level
-    screenReference: {fileID: 11400000, guid: 3a75a7e2f46134f49aab9d2e509fae03, type: 2}
-  - levelSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    levelName: Ultimo level
-    screenReference: {fileID: 11400000, guid: 0729d71d7a69fbe46b9142d41e78399c, type: 2}
   _levelFrame: {fileID: -3002482121708759828, guid: ddd066af0e8c1f04aa34a7018af9d3c5, type: 3}
   _levelFrameParent: {fileID: 1094414709}
   _backButton: {fileID: 162282931}
   _mainMenuScreenRef: {fileID: 11400000, guid: 20e564175325d5740ae5e6feb9dbfcca, type: 2}
-  _gamePlayUiScreenReference: {fileID: 11400000, guid: 328b3428ba0ccf244820d620700ce874, type: 2}
+  _levels:
+  - {fileID: 11400000, guid: e7044b5c8638cf54294fc06a1fe9e08f, type: 2}
+  - {fileID: 11400000, guid: 179bb707f550fdf4b9e963bfebb2486c, type: 2}
+  - {fileID: 11400000, guid: 3a75a7e2f46134f49aab9d2e509fae03, type: 2}
+  - {fileID: 11400000, guid: 0729d71d7a69fbe46b9142d41e78399c, type: 2}
 --- !u!1 &899457206
 GameObject:
   m_ObjectHideFlags: 0

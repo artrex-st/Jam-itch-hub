@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Level_02
   m_EditorClassIdentifier: 
   _sceneName: Level_02
+  _levelTitle: Patio
+  _levelThumbnail: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}

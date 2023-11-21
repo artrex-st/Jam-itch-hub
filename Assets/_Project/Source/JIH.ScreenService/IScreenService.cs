@@ -7,6 +7,7 @@ namespace JIH.ScreenService
     public interface IScreenService : IService
     {
         public AsyncOperation LoadSingleSceneAsync(ScreenReference sceneReference);
+        public void LoadSingleScene(ScreenReference sceneReference);
         public AsyncOperation LoadAdditiveSceneAsync(ScreenReference sceneReference);
         public AsyncOperation UnLoadSceneAsync(ScreenReference sceneReference);
     }

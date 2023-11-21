@@ -18,7 +18,7 @@ namespace JIH
         }
     }
 
-    public class GamePlayUiController : BaseScreen
+    public class LevelController : BaseScreen
     {
         [SerializeField] private TextMeshProUGUI _frameTitle;
         [SerializeField] private Button _pauseMenuButton;
