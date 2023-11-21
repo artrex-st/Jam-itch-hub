@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 using JIH.DataService;
 using JIH.ScreenService;
 using JIH.SoundService;
+using System.Collections.Generic;
 
 namespace Source
 {
@@ -12,6 +13,8 @@ namespace Source
     {
         [Header("Menu screen")]
         [SerializeField] private ScreenReference _firstScreenRef;
+        [Header("Level List")]
+        [SerializeField] private List<ScreenReference> _levels;
 
         [FoldoutGroup("Save Data config")]
         [SerializeField] private string _fileName;
@@ -56,7 +59,7 @@ namespace Source
             GameObject screenServiceObject = new GameObject(nameof(ScreenService));
             DontDestroyOnLoad(screenServiceObject);
             ScreenService screenService = screenServiceObject.AddComponent<ScreenService>();
-            //screenService.Initialize();
+            screenService.Initialize(_levels);
         }
 
         private void SpawnSoundService()

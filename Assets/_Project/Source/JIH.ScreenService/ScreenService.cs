@@ -1,6 +1,6 @@
 using Coimbra;
 using Source;
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +9,13 @@ namespace JIH.ScreenService
     public class ScreenService : Actor, IScreenService
     {
         private ScreenReference _currentSceneReference;
+
+        public List<ScreenReference> Levels { get; private set; }
+
+        public void Initialize(List<ScreenReference> levelsList)
+        {
+            Levels = levelsList;
+        }
 
         public AsyncOperation LoadSingleSceneAsync(ScreenReference sceneReference)
         {

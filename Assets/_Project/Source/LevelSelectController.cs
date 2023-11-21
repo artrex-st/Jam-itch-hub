@@ -2,7 +2,6 @@ using Coimbra.Services.Events;
 using JIH.Levels;
 using JIH.ScreenService;
 using Source;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +13,6 @@ namespace JIH
         [SerializeField] private Transform _levelFrameParent;
         [SerializeField] private Button _backButton;
         [SerializeField] private ScreenReference _mainMenuScreenRef;
-        [SerializeField] private List<ScreenReference> _levels;
 
         private void OnEnable()
         {
@@ -39,7 +37,7 @@ namespace JIH
 
         private void PopulateLevelsFrames()
         {
-            foreach (ScreenReference levelFrameData in _levels)
+            foreach (ScreenReference levelFrameData in ScreenService.Levels)
             {
                 LevelFrameManager levelFrameManager = Instantiate(_levelFrame, _levelFrameParent);
                 levelFrameManager.Initialize(levelFrameData);
@@ -55,6 +53,5 @@ namespace JIH
         {
             ScreenService.LoadSingleScene(e.SceneReference);
         }
-
     }
 }
