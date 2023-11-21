@@ -1,4 +1,5 @@
 using Coimbra.Services.Events;
+using JIH.Levels;
 using JIH.ScreenService;
 using Source;
 using System;
@@ -18,10 +19,13 @@ namespace JIH
         }
     }
 
+    public readonly partial struct RequestEndLevelEvent : IEvent { }
+
     public class LevelController : BaseScreen
     {
         [SerializeField] private TextMeshProUGUI _frameTitle;
         [SerializeField] private Button _pauseMenuButton;
+        [SerializeField] private ScreenReference _nextLevelScreenRef;
         [SerializeField] private ScreenReference _pauseMenuScreenRef;
 
         private void OnEnable()
@@ -41,6 +45,13 @@ namespace JIH
             _pauseMenuButton.onClick.AddListener(SettingsButtonClickHandler);
 
             EventHandles.Add(RequestLevelNameEvent.AddListener(RequestLevelNameEventHandler));
+            EventHandles.Add(RequestEndLevelEvent.AddListener(HandlerRequestEndLevelEvent));
+        }
+
+        private void SettingsButtonClickHandler()
+        {
+            //TODO: pause the game event
+            ScreenService.LoadAdditiveSceneAsync(_pauseMenuScreenRef);
         }
 
         private void RequestLevelNameEventHandler(ref EventContext context, in RequestLevelNameEvent e)
@@ -48,10 +59,11 @@ namespace JIH
             _frameTitle.text = e.LevelName;
         }
 
-        private void SettingsButtonClickHandler()
+        private void HandlerRequestEndLevelEvent(ref EventContext context, in RequestEndLevelEvent e)
         {
             //TODO: pause the game event
-            ScreenService.LoadAdditiveSceneAsync(_pauseMenuScreenRef);
+            ScreenService.LoadSingleScene(_nextLevelScreenRef);
+            SaveDataService.GameData.CurrentLevel++;
         }
     }
 }
