@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ec1660d05d3eaeb47a5cc9f94876afeb
+guid: d9d45c85750ea9745bdf5d514ef2378e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_Waking_Animation_0
+      name: Heavy1_Idle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 30
-        height: 40
+        width: 62
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 820a5e3a8f2d1e844af0ecef82ce1c73
-      internalID: -1790798676
+      spriteID: b984ac533985b9f42a2121282ca431d2
+      internalID: 2041107748
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Waking_Animation_1
+      name: Heavy1_Idle_1
       rect:
         serializedVersion: 2
-        x: 30
+        x: 62
         y: 0
-        width: 30
-        height: 40
+        width: 62
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: acec341cc1f3c2f44993649e42a6af4e
-      internalID: 1009589518
+      spriteID: e72a9bfc2462be84e95c6346b8fd6270
+      internalID: 1430730313
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Waking_Animation_2
+      name: Heavy1_Idle_2
       rect:
         serializedVersion: 2
-        x: 60
+        x: 124
         y: 0
-        width: 30
-        height: 40
+        width: 62
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 761a8331dfe45f6428c758fe6fdcd1bd
-      internalID: -1897985686
+      spriteID: 4fed30744581b2e4483c74f4560cf72c
+      internalID: 1993426689
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Waking_Animation_3
+      name: Heavy1_Idle_3
       rect:
         serializedVersion: 2
-        x: 90
+        x: 186
         y: 0
-        width: 30
-        height: 40
+        width: 62
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,71 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e0c5d5da229f0594b895a6729da3b07a
-      internalID: -987590246
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Waking_Animation_4
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 0
-        width: 30
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dbea7b7385df31149ab4381dabef15ce
-      internalID: 1509637806
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Waking_Animation_5
-      rect:
-        serializedVersion: 2
-        x: 150
-        y: 0
-        width: 30
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 88bd9aee2a92c9d4990b7b5db5f9d2f7
-      internalID: 976191556
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Waking_Animation_6
-      rect:
-        serializedVersion: 2
-        x: 180
-        y: 0
-        width: 30
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3dac2d34d3b85c5469781e7f90678154
-      internalID: 607290125
+      spriteID: b8997bed777d40244a987be56cede617
+      internalID: 1724102090
       vertices: []
       indices: 
       edges: []
@@ -267,13 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Player_Waking_Animation_0: -1790798676
-      Player_Waking_Animation_1: 1009589518
-      Player_Waking_Animation_2: -1897985686
-      Player_Waking_Animation_3: -987590246
-      Player_Waking_Animation_4: 1509637806
-      Player_Waking_Animation_5: 976191556
-      Player_Waking_Animation_6: 607290125
+      Heavy1_Idle_0: 2041107748
+      Heavy1_Idle_1: 1430730313
+      Heavy1_Idle_2: 1993426689
+      Heavy1_Idle_3: 1724102090
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
