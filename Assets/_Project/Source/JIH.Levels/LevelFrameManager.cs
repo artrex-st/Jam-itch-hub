@@ -37,11 +37,11 @@ namespace JIH.Levels
             _levelSceneReference = levelFrameStruct;
             _saveDataService = saveDataService;
             _levelName.text = _levelSceneReference.LevelTitle;
-            _levelThumbnailSprite.sprite = _levelSceneReference.LevelThumbnail != null ? _levelSceneReference.LevelThumbnail : _levelThumbnailSprite.sprite;
 
             //TODO: lock thumbnail level feedback
             _frameButton.interactable = _saveDataService.GameData.UnlockedLevels[_levelId];
-            Debug.Log($"Level: {_levelId} está liberado?: {_frameButton.interactable}");
+            _levelThumbnailSprite.sprite = _frameButton.interactable ? _levelSceneReference.LevelThumbnail : _levelLockThumbnailSprite;
+
             _frameButton.onClick.AddListener(() => new RequestLoadingLevelEvent(_levelSceneReference).Invoke(this));
         }
     }

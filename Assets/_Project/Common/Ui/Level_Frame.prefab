@@ -259,6 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelThumbnailSprite: {fileID: 3220820167459532712}
+  _levelLockThumbnailSprite: {fileID: 21300000, guid: 16f7d4432bb95154a8251df5ad128fcb, type: 3}
   _levelName: {fileID: 3330901939377989437}
   _levelSceneReference: {fileID: 0}
 --- !u!1 &7836475441227684219
