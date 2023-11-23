@@ -1,16 +1,16 @@
 using Coimbra.Services;
 using Coimbra.Services.Events;
-using System;
+using DG.Tweening;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 namespace JIH.Levels
 {
-    public class LevelController_00 : MonoBehaviour
+    [RequireComponent(typeof(Collider2D))]
+    public class DoorManager : MonoBehaviour
     {
-
-        [SerializeField] private TextMeshProUGUI _feedbackPlaceHolder;
+        [SerializeField] private float _dorAnimationTime = 2;
+        private SpriteRenderer _sprite => GetComponent<SpriteRenderer>();
         private readonly List<EventHandle> _eventHandles = new();
 
         private void OnEnable()
@@ -26,12 +26,14 @@ namespace JIH.Levels
         private void Initialize()
         {
             _eventHandles.Add(RequestPressTriggerEvent.AddListener(RequestPressTriggerEventHandler));
-            _feedbackPlaceHolder.text = $"Press close";
         }
 
         private void RequestPressTriggerEventHandler(ref EventContext context, in RequestPressTriggerEvent e)
         {
-            _feedbackPlaceHolder.text = $"open: {e.PressTrigger}";
+            if (e.DoorActivated == this)
+            {
+                transform.DOMove(new Vector3(transform.position.x, transform.position.y - transform.localScale.y), _dorAnimationTime).OnComplete(() => _sprite.DOFade(0, _dorAnimationTime));
+            }
         }
 
         private void Dispose()

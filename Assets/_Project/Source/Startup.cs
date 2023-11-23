@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 using JIH.DataService;
 using JIH.ScreenService;
 using JIH.SoundService;
+using System.Collections.Generic;
 
 namespace Source
 {
@@ -12,6 +13,8 @@ namespace Source
     {
         [Header("Menu screen")]
         [SerializeField] private ScreenReference _firstScreenRef;
+        [Header("Level List")]
+        [SerializeField] private List<ScreenReference> _levels;
 
         [FoldoutGroup("Save Data config")]
         [SerializeField] private string _fileName;
@@ -48,7 +51,14 @@ namespace Source
 #if !UNITY_EDITOR
             _useEncryption = true;
 #endif
-            saveDataService.Initialize(_fileName, _useEncryption);
+            Dictionary<int, bool> levels = new Dictionary<int, bool>();
+
+            for (int i = 0; i < _levels.Count; i++)
+            {
+                levels.Add(i, i==0);
+            }
+
+            saveDataService.Initialize(_fileName, _useEncryption, levels);
         }
 
         private void SpawnScreenService()
@@ -56,7 +66,7 @@ namespace Source
             GameObject screenServiceObject = new GameObject(nameof(ScreenService));
             DontDestroyOnLoad(screenServiceObject);
             ScreenService screenService = screenServiceObject.AddComponent<ScreenService>();
-            //screenService.Initialize();
+            screenService.Initialize(_levels);
         }
 
         private void SpawnSoundService()

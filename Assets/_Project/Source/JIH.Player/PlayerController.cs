@@ -2,6 +2,7 @@ using Coimbra.Services.Events;
 using Cysharp.Threading.Tasks;
 using JIH.Input;
 using JIH.Levels;
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,9 +16,20 @@ namespace JIH.Player
         public float Time;
     }
 
+    public enum BodyType
+    {
+        Default,
+        Dash,
+        Double,
+        Heavy,
+        Stomp
+    }
+
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class PlayerController : MonoBehaviour, IScalable
     {
+        [field: SerializeField] public BodyType BodyType { get; private set; }
+
         [SerializeField] private List<ScriptableStats> _stats;
         [SerializeField] private ScriptableStats _currentStats;
         // dash
@@ -184,11 +196,12 @@ namespace JIH.Player
 
             while (elapsedTime < _dashDuration)
             {
-                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _axisXCache * _dashMaxSpeed, _dashAcceleration * Time.fixedDeltaTime);
+                _frameVelocity.x = _axisXCache * _dashMaxSpeed;
                 elapsedTime += Time.deltaTime;
                 await UniTask.Yield();
             }
 
+            _frameVelocity.x = _rigidbody2D.velocity.x / 2;
             isDashing = false;
         }
 

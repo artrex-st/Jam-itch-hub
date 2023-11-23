@@ -1,4 +1,5 @@
 using Coimbra;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace JIH.DataService
@@ -8,9 +9,11 @@ namespace JIH.DataService
         public GameData GameData { get; private set; }
         private bool _useEncryption;
         private FileDataHandler _fileDataHandler;
+        private Dictionary<int, bool> _levels;
 
-        public void Initialize(string fileName, bool useEncryption)
+        public void Initialize(string fileName, bool useEncryption, Dictionary<int, bool> levels)
         {
+            _levels = levels;
             _useEncryption = useEncryption;
 #if UNITY_EDITOR
             _fileDataHandler = new FileDataHandler(Application.dataPath + "/Saves/", fileName, _useEncryption);
@@ -32,7 +35,10 @@ namespace JIH.DataService
 
         private void NewGame()
         {
-            GameData = new GameData();
+            GameData = new GameData
+            {
+                UnlockedLevels = _levels,
+            };
         }
 
         private void LoadGame()
