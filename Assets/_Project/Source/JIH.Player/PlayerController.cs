@@ -1,3 +1,4 @@
+using Coimbra.Services;
 using Coimbra.Services.Events;
 using Cysharp.Threading.Tasks;
 using JIH.Input;
@@ -8,6 +9,18 @@ using UnityEngine;
 
 namespace JIH.Player
 {
+    public readonly partial struct RequestJumpEvent : IEvent { }
+
+    public readonly partial struct RequestPlayerAirEvent : IEvent
+    {
+        public readonly bool IsJumping;
+
+        public RequestPlayerAirEvent(bool isJumping)
+        {
+            IsJumping = isJumping;
+        }
+    }
+
     public struct FrameInput
     {
         public bool JumpDown;
@@ -63,9 +76,14 @@ namespace JIH.Player
         private bool HasBufferedJump => _bufferedJumpUsable && _time < _timeJumpWasPressed + _currentStats.JumpBuffer;
         private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGrounded + _currentStats.CoyoteTime;
 
-        private void Awake()
+        private void OnEnable()
         {
             Initialize();
+        }
+
+        private void OnDisable()
+        {
+            Dispose();
         }
 
         private void Update()
@@ -121,15 +139,14 @@ namespace JIH.Player
                 _endedJumpEarly = false;
                 _doubleJumpToConsume = true;
 
-                //TODO: EVENT
             }
             else if (_grounded && !groundHit)
             {
                 _grounded = false;
                 _frameLeftGrounded = _time;
-                //TODO: EVENT
             }
 
+            new RequestPlayerAirEvent(!_grounded).Invoke(this);
             Physics2D.queriesStartInColliders = _cachedQueryStartInColliders;
         }
 
@@ -165,7 +182,8 @@ namespace JIH.Player
             {
                 _doubleJumpToConsume = false;
             }
-            //Jumped?.Invoke();
+
+            new RequestJumpEvent().Invoke(this);
         }
 
         private void HandleDirection()
@@ -289,6 +307,18 @@ namespace JIH.Player
                 _jumpToConsume = true;
                 _timeJumpWasPressed = _time;
             }
+        }
+
+        private void Dispose()
+        {
+            IEventService eventService = ServiceLocator.GetChecked<IEventService>();
+
+            foreach (EventHandle eventHandle in _eventHandles)
+            {
+                eventService.RemoveListener(eventHandle);
+            }
+
+            _eventHandles.Clear();
         }
     }
 }
