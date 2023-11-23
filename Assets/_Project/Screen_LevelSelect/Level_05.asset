@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Level_05
   m_EditorClassIdentifier: 
   _sceneName: Level_05
+  _levelTitle: 
+  _levelThumbnail: {fileID: 21300000, guid: 16f7d4432bb95154a8251df5ad128fcb, type: 3}

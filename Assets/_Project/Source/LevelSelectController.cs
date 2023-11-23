@@ -51,6 +51,8 @@ namespace JIH
 
         private void HandlerRequestLoadingLevelEvent(ref EventContext context, in RequestLoadingLevelEvent e)
         {
+            SaveDataService.GameData.CurrentLevel = e.LevelId;
+            SaveDataService.SaveGame();
             ScreenService.LoadSingleScene(e.SceneReference);
         }
     }

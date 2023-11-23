@@ -79,6 +79,7 @@ namespace JIH
             }
 
             ScreenService.LoadSingleScene(_nextLevelScreenRef);
+            SaveDataService.SaveGame();
         }
     }
 }

@@ -12,10 +12,12 @@ namespace JIH.Levels
     public readonly partial struct RequestLoadingLevelEvent : IEvent
     {
         public readonly ScreenReference SceneReference;
+        public readonly int LevelId;
 
-        public RequestLoadingLevelEvent(ScreenReference sceneReference)
+        public RequestLoadingLevelEvent(ScreenReference sceneReference, int levelId)
         {
             SceneReference = sceneReference;
+            LevelId = levelId;
         }
     }
 
@@ -42,8 +44,7 @@ namespace JIH.Levels
             _frameButton.interactable = _saveDataService.GameData.UnlockedLevels[_levelId];
             _levelThumbnailSprite.sprite = _frameButton.interactable ? _levelSceneReference.LevelThumbnail : _levelLockThumbnailSprite;
 
-            _saveDataService.GameData.CurrentLevel = _levelId;
-            _frameButton.onClick.AddListener(() => new RequestLoadingLevelEvent(_levelSceneReference).Invoke(this));
+            _frameButton.onClick.AddListener(() => new RequestLoadingLevelEvent(_levelSceneReference, _levelId).Invoke(this));
         }
     }
 }
