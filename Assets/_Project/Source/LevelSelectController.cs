@@ -37,10 +37,10 @@ namespace JIH
 
         private void PopulateLevelsFrames()
         {
-            foreach (ScreenReference levelFrameData in ScreenService.Levels)
+            for (int i = 0; i < ScreenService.Levels.Count; i++)
             {
                 LevelFrameManager levelFrameManager = Instantiate(_levelFrame, _levelFrameParent);
-                levelFrameManager.Initialize(levelFrameData);
+                levelFrameManager.Initialize(i, ScreenService.Levels[i], SaveDataService);
             }
         }
 

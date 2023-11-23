@@ -51,7 +51,14 @@ namespace Source
 #if !UNITY_EDITOR
             _useEncryption = true;
 #endif
-            saveDataService.Initialize(_fileName, _useEncryption);
+            Dictionary<int, bool> levels = new Dictionary<int, bool>();
+
+            for (int i = 0; i < _levels.Count; i++)
+            {
+                levels.Add(i, i==0);
+            }
+
+            saveDataService.Initialize(_fileName, _useEncryption, levels);
         }
 
         private void SpawnScreenService()
