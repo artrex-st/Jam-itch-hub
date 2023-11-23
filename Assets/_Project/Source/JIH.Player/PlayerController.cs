@@ -9,6 +9,18 @@ using UnityEngine;
 
 namespace JIH.Player
 {
+    public readonly partial struct RequestJumpEvent : IEvent { }
+
+    public readonly partial struct RequestPlayerAirEvent : IEvent
+    {
+        public readonly bool IsJumping;
+
+        public RequestPlayerAirEvent(bool isJumping)
+        {
+            IsJumping = isJumping;
+        }
+    }
+
     public struct FrameInput
     {
         public bool JumpDown;
