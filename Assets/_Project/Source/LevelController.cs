@@ -3,6 +3,7 @@ using JIH.Levels;
 using JIH.ScreenService;
 using Source;
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -62,8 +63,22 @@ namespace JIH
         private void HandlerRequestEndLevelEvent(ref EventContext context, in RequestEndLevelEvent e)
         {
             //TODO: pause the game event
+
+            if (SaveDataService.GameData.CurrentLevel >= SaveDataService.GameData.UnlockedLevels.Count)
+            {
+                //TODO: End Game
+                Debug.LogWarning($"<color=purple> End Levels </color>");
+            }
+
+            int x = SaveDataService.GameData.CurrentLevel++;
+            SaveDataService.GameData.UnlockedLevels[x] = true;
+
+            foreach (KeyValuePair<int,bool> level in SaveDataService.GameData.UnlockedLevels)
+            {
+                Debug.Log($"Level: {level.Key} está liberado?: {level.Value}");
+            }
+
             ScreenService.LoadSingleScene(_nextLevelScreenRef);
-            SaveDataService.GameData.CurrentLevel++;
         }
     }
 }

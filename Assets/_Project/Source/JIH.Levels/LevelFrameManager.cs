@@ -42,6 +42,7 @@ namespace JIH.Levels
             _frameButton.interactable = _saveDataService.GameData.UnlockedLevels[_levelId];
             _levelThumbnailSprite.sprite = _frameButton.interactable ? _levelSceneReference.LevelThumbnail : _levelLockThumbnailSprite;
 
+            _saveDataService.GameData.CurrentLevel = _levelId;
             _frameButton.onClick.AddListener(() => new RequestLoadingLevelEvent(_levelSceneReference).Invoke(this));
         }
     }

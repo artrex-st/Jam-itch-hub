@@ -2442,7 +2442,7 @@ PrefabInstance:
     - target: {fileID: 2581878958926201883, guid: 2a206868bcadea140a38dc9593743032, type: 3}
       propertyPath: _nextLevelScreenRef
       value: 
-      objectReference: {fileID: 11400000, guid: 3a75a7e2f46134f49aab9d2e509fae03, type: 2}
+      objectReference: {fileID: 11400000, guid: 179bb707f550fdf4b9e963bfebb2486c, type: 2}
     - target: {fileID: 4643351862945680123, guid: 2a206868bcadea140a38dc9593743032, type: 3}
       propertyPath: m_Name
       value: Level_Canvas
