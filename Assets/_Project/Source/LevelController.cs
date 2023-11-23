@@ -70,6 +70,7 @@ namespace JIH
                 Debug.LogWarning($"<color=purple> End Levels </color>");
             }
 
+            SaveDataService.GameData.CurrentLevel++;
             int x = SaveDataService.GameData.CurrentLevel++;
             SaveDataService.GameData.UnlockedLevels[x] = true;
 
@@ -78,8 +79,8 @@ namespace JIH
                 Debug.Log($"Level: {level.Key} está liberado?: {level.Value}");
             }
 
-            ScreenService.LoadSingleScene(_nextLevelScreenRef);
             SaveDataService.SaveGame();
+            ScreenService.LoadSingleScene(_nextLevelScreenRef);
         }
     }
 }
