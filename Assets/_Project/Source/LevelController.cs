@@ -1,11 +1,15 @@
+using Cinemachine;
 using Coimbra.Services.Events;
 using Cysharp.Threading.Tasks;
 using JIH.Levels;
+using JIH.Player;
 using JIH.ScreenService;
+using Sirenix.OdinInspector;
 using Source;
 using System;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,6 +39,12 @@ namespace JIH
 
     public class LevelController : BaseScreen
     {
+        [FoldoutGroup("Spawn Config")]
+        [SerializeField] private PlayerController _player;
+        [FoldoutGroup("Spawn Config")]
+        [SerializeField] private Transform _playerSpawnPoint;
+        [FoldoutGroup("Spawn Config")]
+        [SerializeField] private CinemachineVirtualCamera _vitualCamera;
         [SerializeField] private TextMeshProUGUI _frameTitle;
         [SerializeField] private Button _pauseMenuButton;
         [SerializeField] private ScreenReference _nextLevelScreenRef;
@@ -64,6 +74,9 @@ namespace JIH
         private async void StartGameAsync()
         {
             await UniTask.Delay(TimeSpan.FromSeconds(1));
+            PlayerController player = Instantiate(_player, _playerSpawnPoint.position, quaternion.identity);
+            _vitualCamera.Follow = player.transform;
+            _vitualCamera.LookAt = player.transform;
             new RequestPauseEvent(false).Invoke(this);
         }
 

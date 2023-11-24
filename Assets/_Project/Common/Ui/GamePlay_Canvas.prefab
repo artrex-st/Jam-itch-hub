@@ -478,6 +478,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Life_Text
       objectReference: {fileID: 0}
+    - target: {fileID: 3701682563534033259, guid: 29ee96104b6ca314f865b075ae89fd1d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4099469526285676869, guid: 29ee96104b6ca314f865b075ae89fd1d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -928,8 +932,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _thisScreenRef: {fileID: 11400000, guid: 328b3428ba0ccf244820d620700ce874, type: 2}
+  _player: {fileID: 2835830873134233714, guid: da8934bbde8d612478731efba51a8fae, type: 3}
   _frameTitle: {fileID: 6524224918644792043}
   _pauseMenuButton: {fileID: 3429103476705688442}
+  _nextLevelScreenRef: {fileID: 0}
   _pauseMenuScreenRef: {fileID: 11400000, guid: 6b5295a8ec073ac469abf81890e3356a, type: 2}
 --- !u!224 &8544265411998648518 stripped
 RectTransform:
@@ -1030,15 +1036,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6610262533501722441, guid: be75cc3d314266e48ad7d80c14a132a3, type: 3}
       propertyPath: m_Name
-      value: PauseMenu_Button
+      value: Pause_Button
       objectReference: {fileID: 0}
     - target: {fileID: 6686724662015092135, guid: be75cc3d314266e48ad7d80c14a132a3, type: 3}
       propertyPath: m_text
-      value: Pause Menu
+      value: Pause
       objectReference: {fileID: 0}
     - target: {fileID: 6686724662015092135, guid: be75cc3d314266e48ad7d80c14a132a3, type: 3}
       propertyPath: m_fontSize
-      value: 56.95
+      value: 53.35
       objectReference: {fileID: 0}
     - target: {fileID: 6686724662015092135, guid: be75cc3d314266e48ad7d80c14a132a3, type: 3}
       propertyPath: m_enableAutoSizing
