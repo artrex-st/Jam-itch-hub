@@ -14,7 +14,6 @@ namespace JIH
         [SerializeField] private Button _settingsButton;
         [SerializeField] private Button _exitGameButton;
         [Header("Screen Reference")]
-        [SerializeField] private ScreenReference _gameScreenRef;
         [SerializeField] private ScreenReference _levelSelectScreenRef;
         [SerializeField] private ScreenReference _settingsScreenRef;
 
@@ -41,7 +40,8 @@ namespace JIH
 
         private void PlayButtonClickHandler()
         {
-            AsyncOperation openSceneOperationAsync = ScreenService.LoadSingleSceneAsync(_gameScreenRef);
+            ScreenReference currentHighLevel = ScreenService.Levels[SaveDataService.GameData.CurrentLevel];
+            AsyncOperation openSceneOperationAsync = ScreenService.LoadSingleSceneAsync(currentHighLevel);
         }
 
         private void LevelSelectButtonCLickHandler()
