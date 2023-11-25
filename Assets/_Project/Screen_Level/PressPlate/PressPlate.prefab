@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8603976165112697331}
   - component: {fileID: 4175375016742967587}
+  - component: {fileID: 658970040376198484}
   m_Layer: 0
   m_Name: Press Plate Sprite
   m_TagString: Untagged
@@ -78,12 +79,33 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.56666666}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &658970040376198484
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6205746022695784405}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 921fd47e0ba3e9a4e82f521684ac379e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6530949996390692837
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,4 +226,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pressType: 0
+  _pressPlateSkinType: 0
   _doorManager: {fileID: 0}
+  _animator: {fileID: 658970040376198484}
+  _pressAnimations:
+  - {fileID: 9100000, guid: 62cfbce62f6bd6a47af5276e27211165, type: 2}
+  - {fileID: 9100000, guid: 921fd47e0ba3e9a4e82f521684ac379e, type: 2}
+  - {fileID: 9100000, guid: 0d480715e16bde6489f7c2e63509693e, type: 2}
