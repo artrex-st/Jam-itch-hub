@@ -330,7 +330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6530949996390692837, guid: 8c507e08626199d4991a3a0d005debc4, type: 3}
       propertyPath: m_Name
-      value: PressPlate
+      value: common
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -391,7 +391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6530949996390692837, guid: 8c507e08626199d4991a3a0d005debc4, type: 3}
       propertyPath: m_Name
-      value: PressPlate (2)
+      value: light
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -517,7 +517,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6530949996390692837, guid: 8c507e08626199d4991a3a0d005debc4, type: 3}
       propertyPath: m_Name
-      value: PressPlate (1)
+      value: heavy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
