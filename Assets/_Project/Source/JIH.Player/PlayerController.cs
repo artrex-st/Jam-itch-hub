@@ -5,6 +5,7 @@ using JIH.GamePlay;
 using JIH.Input;
 using JIH.Levels;
 using Sirenix.OdinInspector;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -78,10 +79,12 @@ namespace JIH.Player
         private bool HasBufferedJump => _bufferedJumpUsable && _time < _timeJumpWasPressed + _currentStats.JumpBuffer;
         private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGrounded + _currentStats.CoyoteTime;
 
-        public void PlayDead()
+        public async void PlayDead()
         {
-            Debug.Log($"Apply Damage Logic on {transform.name}");
+            new RequestPauseEvent(true).Invoke(this);
             new RequestDieAnimationEvent(transform.GetInstanceID()).Invoke(this);
+            await UniTask.Delay(TimeSpan.FromSeconds(0.7f));
+            new RequestPlayerDieEvent().Invoke(this);
         }
 
         private void OnEnable()

@@ -1,4 +1,5 @@
 using Cinemachine;
+using Coimbra;
 using Coimbra.Services.Events;
 using Cysharp.Threading.Tasks;
 using JIH.GamePlay;
@@ -55,6 +56,8 @@ namespace JIH
         }
     }
 
+    public readonly partial struct RequestPlayerDieEvent : IEvent { }
+
     public class LevelController : BaseScreen
     {
         [FoldoutGroup("Spawn Config")]
@@ -67,6 +70,7 @@ namespace JIH
         [SerializeField] private Button _pauseMenuButton;
         [SerializeField] private ScreenReference _nextLevelScreenRef;
         [SerializeField] private ScreenReference _pauseMenuScreenRef;
+        private PlayerController _activePlayer;
 
         private void OnEnable()
         {
@@ -87,15 +91,16 @@ namespace JIH
             EventHandles.Add(RequestLevelNameEvent.AddListener(RequestLevelNameEventHandler));
             EventHandles.Add(RequestEndLevelEvent.AddListener(HandlerRequestEndLevelEvent));
             EventHandles.Add(RequestDamageEvent.AddListener(HandlerRequestDamageEvent));
+            EventHandles.Add(RequestPlayerDieEvent.AddListener(HandlerRequestPlayerDieEvent));
             StartGameAsync();
         }
 
         private async void StartGameAsync()
         {
             await UniTask.Delay(TimeSpan.FromSeconds(1));
-            PlayerController player = Instantiate(_player, _playerSpawnPoint.position, quaternion.identity);
-            _vitualCamera.Follow = player.transform;
-            _vitualCamera.LookAt = player.transform;
+            _activePlayer = Instantiate(_player, _playerSpawnPoint.position, quaternion.identity);
+            _vitualCamera.Follow = _activePlayer.transform;
+            _vitualCamera.LookAt = _activePlayer.transform;
             new RequestPauseEvent(false).Invoke(this);
         }
 
@@ -112,7 +117,7 @@ namespace JIH
 
         private void HandlerRequestEndLevelEvent(ref EventContext context, in RequestEndLevelEvent e)
         {
-            //new RequestPauseEvent(true).Invoke(this);
+            new RequestPauseEvent(true).Invoke(this);
 
             if (SaveDataService.GameData.CurrentLevel >= SaveDataService.GameData.UnlockedLevels.Count)
             {
@@ -124,11 +129,6 @@ namespace JIH
             int x = SaveDataService.GameData.CurrentLevel++;
             SaveDataService.GameData.UnlockedLevels[x] = true;
 
-            foreach (KeyValuePair<int,bool> level in SaveDataService.GameData.UnlockedLevels)
-            {
-                Debug.Log($"Level: {level.Key} está liberado?: {level.Value}");
-            }
-
             SaveDataService.SaveGame();
             ScreenService.LoadSingleScene(_nextLevelScreenRef);
         }
@@ -136,6 +136,12 @@ namespace JIH
         private void HandlerRequestDamageEvent(ref EventContext context, in RequestDamageEvent e)
         {
             e.DamageableScript.PlayDead();
+        }
+
+        private void HandlerRequestPlayerDieEvent(ref EventContext context, in RequestPlayerDieEvent e)
+        {
+            _activePlayer.gameObject.Dispose(true);
+            StartGameAsync();
         }
     }
 }
