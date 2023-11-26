@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4529331ce7cad3d4fb9ccf7ef6cd2ee5
+guid: 0a037ff9fcb7e094296d786f08f6e85f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PomboVoador - Dying Animation_0
+      name: PigeonFat_Dying_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 34
-        height: 30
+        width: 44
+        height: 43
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9410f738fdeeaf3449868b708ffb6360
-      internalID: 1978752774
+      spriteID: 9a79a9b6a16d84c41ad3d79ae4d9421a
+      internalID: -1762976716
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PomboVoador - Dying Animation_1
+      name: PigeonFat_Dying_1
       rect:
         serializedVersion: 2
-        x: 34
+        x: 44
         y: 0
-        width: 34
-        height: 30
+        width: 44
+        height: 43
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55f60ac84a5d67d4b8523a718eadcea4
-      internalID: -2015116710
+      spriteID: 3a3efbf75b9af6a40be9627f44cf5e49
+      internalID: -1706039946
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PomboVoador - Dying Animation_2
+      name: PigeonFat_Dying_2
       rect:
         serializedVersion: 2
-        x: 68
+        x: 88
         y: 0
-        width: 34
-        height: 30
+        width: 44
+        height: 43
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82d0af24862f89147b945ad133124078
-      internalID: 332571608
+      spriteID: c2b9ccbaaac74a44cb45cdc81eebaf9c
+      internalID: 765618523
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PomboVoador - Dying Animation_3
+      name: PigeonFat_Dying_3
       rect:
         serializedVersion: 2
-        x: 102
+        x: 132
         y: 0
-        width: 34
-        height: 30
+        width: 44
+        height: 43
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d050497fb4108b44ba9dae02f7c65534
-      internalID: 1503230946
+      spriteID: f11568e0c1fda15408c12ec65e0f185f
+      internalID: -2134059134
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PomboVoador - Dying Animation_4
+      name: PigeonFat_Dying_4
       rect:
         serializedVersion: 2
-        x: 136
+        x: 176
         y: 0
-        width: 34
-        height: 30
+        width: 44
+        height: 43
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 458c57feb8dd0784b80a92efc7d93542
-      internalID: -1048390764
+      spriteID: 092dc756a6dbb6644a15f226ad04759d
+      internalID: -372637308
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PomboVoador - Dying Animation_5
+      name: PigeonFat_Dying_5
       rect:
         serializedVersion: 2
-        x: 170
+        x: 220
         y: 0
-        width: 34
-        height: 30
+        width: 44
+        height: 43
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,20 +229,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f009da5cae4baa4686de054a7eda9c2
-      internalID: -1786410845
+      spriteID: 94a5d656625314449901a8ef557cfc5e
+      internalID: 1685751619
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PomboVoador - Dying Animation_6
+      name: PigeonFat_Dying_6
       rect:
         serializedVersion: 2
-        x: 204
+        x: 264
         y: 0
-        width: 34
-        height: 30
+        width: 44
+        height: 43
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,8 +250,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14539171d3a18db4fa388a57312cbea4
-      internalID: 3266688
+      spriteID: b6a73c182de330b44861551729b77c3b
+      internalID: 1270511211
       vertices: []
       indices: 
       edges: []
@@ -267,13 +267,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PomboVoador - Dying Animation_0: 1978752774
-      PomboVoador - Dying Animation_1: -2015116710
-      PomboVoador - Dying Animation_2: 332571608
-      PomboVoador - Dying Animation_3: 1503230946
-      PomboVoador - Dying Animation_4: -1048390764
-      PomboVoador - Dying Animation_5: -1786410845
-      PomboVoador - Dying Animation_6: 3266688
+      PigeonFat_Dying_0: -1762976716
+      PigeonFat_Dying_1: -1706039946
+      PigeonFat_Dying_2: 765618523
+      PigeonFat_Dying_3: -2134059134
+      PigeonFat_Dying_4: -372637308
+      PigeonFat_Dying_5: 1685751619
+      PigeonFat_Dying_6: 1270511211
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

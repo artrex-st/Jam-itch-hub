@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: da2b31c4c1dba3e4985491db5dc22315
+guid: 058f1233c4496a04abaaecb0beb598af
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PomboVoador - Shitting Animation_0
+      name: PigeonFly_Flying_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4783b843216c48649a6f14d6f9b125e5
-      internalID: -1520236812
+      spriteID: 10e8422f8058c9a4b894bb83015f79a6
+      internalID: 1422320466
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PomboVoador - Shitting Animation_1
+      name: PigeonFly_Flying_1
       rect:
         serializedVersion: 2
         x: 34
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 13a17c5a42baa7142b14f5b4fa6d4908
-      internalID: 630132452
+      spriteID: e7f9a725565127e40a0d859a2bcbbf9d
+      internalID: 1532638569
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PomboVoador - Shitting Animation_2
+      name: PigeonFly_Flying_2
       rect:
         serializedVersion: 2
         x: 68
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 13c9debf84e364942a06ee160b2a8c96
-      internalID: 536839367
+      spriteID: 61bc8fea290f54c4d9911a5deff06af8
+      internalID: -901270285
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PomboVoador - Shitting Animation_3
+      name: PigeonFly_Flying_3
       rect:
         serializedVersion: 2
         x: 102
@@ -187,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f309e14ad5af2e848b7192c5954e42e0
-      internalID: 1096260751
+      spriteID: f4cd1a3759ffc544991b40313d7ba174
+      internalID: 221763720
       vertices: []
       indices: 
       edges: []
@@ -204,10 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PomboVoador - Shitting Animation_0: -1520236812
-      PomboVoador - Shitting Animation_1: 630132452
-      PomboVoador - Shitting Animation_2: 536839367
-      PomboVoador - Shitting Animation_3: 1096260751
+      PigeonFly_Flying_0: 1422320466
+      PigeonFly_Flying_1: 1532638569
+      PigeonFly_Flying_2: -901270285
+      PigeonFly_Flying_3: 221763720
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

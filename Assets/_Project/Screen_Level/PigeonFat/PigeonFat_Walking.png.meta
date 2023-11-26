@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0a037ff9fcb7e094296d786f08f6e85f
+guid: 6f35af4503455dd4fb1690cf6e63388d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GG - Dying Animation_0
+      name: PigeonFat_Walking_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44d3c1699eee07147b6442fafe55ccbc
-      internalID: 233832857
+      spriteID: ad0cd3b38cadb0e408f1d7144c5c1cb0
+      internalID: -1367783762
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GG - Dying Animation_1
+      name: PigeonFat_Walking_1
       rect:
         serializedVersion: 2
         x: 44
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3062a27b015b54d4e93db46e76fe4dac
-      internalID: 2055359414
+      spriteID: 72f8101ac1cb2ef4c903dd7e1586437e
+      internalID: 2029457962
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GG - Dying Animation_2
+      name: PigeonFat_Walking_2
       rect:
         serializedVersion: 2
         x: 88
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56cf2629674814a4fa03c5127532e2d8
-      internalID: 222164899
+      spriteID: c5e1fe8bd7e7e40479f3e35bf89a0691
+      internalID: -1003375987
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GG - Dying Animation_3
+      name: PigeonFat_Walking_3
       rect:
         serializedVersion: 2
         x: 132
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90ce4d208b82a5f428e0b5eed5798844
-      internalID: -1675519694
+      spriteID: 5014b61b77a07074ea219a090d68bca5
+      internalID: 1990078336
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GG - Dying Animation_4
+      name: PigeonFat_Walking_4
       rect:
         serializedVersion: 2
         x: 176
@@ -208,50 +208,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d14d1b70bf151d148af7ee8448e690d0
-      internalID: 1840281998
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GG - Dying Animation_5
-      rect:
-        serializedVersion: 2
-        x: 220
-        y: 0
-        width: 44
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 485240823a39be844a02557d8d90e40e
-      internalID: -1329764965
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GG - Dying Animation_6
-      rect:
-        serializedVersion: 2
-        x: 264
-        y: 0
-        width: 44
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 92de98420ad78f848945f481d2f3809f
-      internalID: 1069665848
+      spriteID: abb31216e2597ca46958a8e19b084d79
+      internalID: 1289218635
       vertices: []
       indices: 
       edges: []
@@ -267,13 +225,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GG - Dying Animation_0: 233832857
-      GG - Dying Animation_1: 2055359414
-      GG - Dying Animation_2: 222164899
-      GG - Dying Animation_3: -1675519694
-      GG - Dying Animation_4: 1840281998
-      GG - Dying Animation_5: -1329764965
-      GG - Dying Animation_6: 1069665848
+      PigeonFat_Walking_0: -1367783762
+      PigeonFat_Walking_1: 2029457962
+      PigeonFat_Walking_2: -1003375987
+      PigeonFat_Walking_3: 1990078336
+      PigeonFat_Walking_4: 1289218635
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
