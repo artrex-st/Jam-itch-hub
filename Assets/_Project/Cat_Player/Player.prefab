@@ -114,9 +114,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 552a4c59c431d4645bd802600ccfe9ed, type: 2}
   _currentStats: {fileID: 11400000, guid: 552a4c59c431d4645bd802600ccfe9ed, type: 2}
   _dashAcceleration: 600
-  _dashMaxSpeed: 42
-  _dashDuration: 0.7
-  _dashCooldown: 2
+  _dashMaxSpeed: 22
+  _dashDuration: 0.3
+  _dashCooldown: 1
 --- !u!1 &8915589965076596471
 GameObject:
   m_ObjectHideFlags: 0
