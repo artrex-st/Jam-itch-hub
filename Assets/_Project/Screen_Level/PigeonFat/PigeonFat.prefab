@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 1164943171447395308}
   - component: {fileID: 1915549991928422874}
   m_Layer: 0
-  m_Name: PigeonFat
+  m_Name: PigeonFat Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
