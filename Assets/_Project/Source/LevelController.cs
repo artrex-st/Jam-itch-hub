@@ -1,6 +1,7 @@
 using Cinemachine;
 using Coimbra.Services.Events;
 using Cysharp.Threading.Tasks;
+using JIH.GamePlay;
 using JIH.Levels;
 using JIH.Player;
 using JIH.ScreenService;
@@ -15,6 +16,11 @@ using UnityEngine.UI;
 
 namespace JIH
 {
+    public enum DamageType
+    {
+        BaseType,
+    }
+
     public readonly partial struct RequestLevelNameEvent : IEvent
     {
         public readonly string LevelName;
@@ -34,6 +40,18 @@ namespace JIH
         public RequestPauseEvent(bool isGamePause)
         {
             IsGamePause = isGamePause;
+        }
+    }
+
+    public readonly partial struct RequestDamageEvent : IEvent
+    {
+        public readonly DamageType DamageType;
+        public readonly IDamageable DamageableScript;
+
+        public RequestDamageEvent(IDamageable damageableScript, DamageType damageType = JIH.DamageType.BaseType)
+        {
+            DamageableScript = damageableScript;
+            DamageType = damageType;
         }
     }
 
@@ -68,6 +86,7 @@ namespace JIH
 
             EventHandles.Add(RequestLevelNameEvent.AddListener(RequestLevelNameEventHandler));
             EventHandles.Add(RequestEndLevelEvent.AddListener(HandlerRequestEndLevelEvent));
+            EventHandles.Add(RequestDamageEvent.AddListener(HandlerRequestDamageEvent));
             StartGameAsync();
         }
 
@@ -112,6 +131,11 @@ namespace JIH
 
             SaveDataService.SaveGame();
             ScreenService.LoadSingleScene(_nextLevelScreenRef);
+        }
+
+        private void HandlerRequestDamageEvent(ref EventContext context, in RequestDamageEvent e)
+        {
+            e.DamageableScript.PlayDead();
         }
     }
 }

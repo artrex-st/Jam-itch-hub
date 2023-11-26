@@ -1,10 +1,10 @@
 using Coimbra.Services;
 using Coimbra.Services.Events;
 using Cysharp.Threading.Tasks;
+using JIH.GamePlay;
 using JIH.Input;
 using JIH.Levels;
 using Sirenix.OdinInspector;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -40,7 +40,7 @@ namespace JIH.Player
     }
 
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
-    public class PlayerController : MonoBehaviour, IScalable
+    public class PlayerController : MonoBehaviour, IScalable, IDamageable
     {
         [field: SerializeField] public BodyType BodyType { get; private set; }
 
@@ -77,6 +77,12 @@ namespace JIH.Player
 
         private bool HasBufferedJump => _bufferedJumpUsable && _time < _timeJumpWasPressed + _currentStats.JumpBuffer;
         private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGrounded + _currentStats.CoyoteTime;
+
+        public void PlayDead()
+        {
+            Debug.Log($"Apply Damage Logic on {transform.name}");
+            new RequestDieAnimationEvent(transform.GetInstanceID()).Invoke(this);
+        }
 
         private void OnEnable()
         {

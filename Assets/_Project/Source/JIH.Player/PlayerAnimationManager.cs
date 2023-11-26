@@ -1,5 +1,6 @@
 using Coimbra.Services;
 using Coimbra.Services.Events;
+using JIH.GamePlay;
 using JIH.Input;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace JIH.Player
         [SerializeField] private float _playerDirection;
         private readonly List<EventHandle> _eventHandles = new();
         private static readonly int Jump = Animator.StringToHash("Jump");
+        private static readonly int Die = Animator.StringToHash("Die");
 
         private void OnEnable()
         {
@@ -31,6 +33,19 @@ namespace JIH.Player
             _eventHandles.Add(CancelInputXEvent.AddListener(HandlerCancelInputXEvent));
             _eventHandles.Add(RequestPlayerAirEvent.AddListener(RequestPlayerJumpEventHandler));
             _eventHandles.Add(RequestJumpEvent.AddListener(HandlerRequestJumpEvent));
+            _eventHandles.Add(RequestDieAnimationEvent.AddListener(HandlerRequestDieAnimationEvent));
+        }
+
+        private void Dispose()
+        {
+            IEventService eventService = ServiceLocator.GetChecked<IEventService>();
+
+            foreach (EventHandle eventHandle in _eventHandles)
+            {
+                eventService.RemoveListener(eventHandle);
+            }
+
+            _eventHandles.Clear();
         }
 
         private void HandlerRequestJumpEvent(ref EventContext context, in RequestJumpEvent e)
@@ -61,16 +76,12 @@ namespace JIH.Player
             _playerAnimator.SetBool(Animator.StringToHash("IsWalking"), _playerDirection != 0);
         }
 
-        private void Dispose()
+        private void HandlerRequestDieAnimationEvent(ref EventContext context, in RequestDieAnimationEvent e)
         {
-            IEventService eventService = ServiceLocator.GetChecked<IEventService>();
-
-            foreach (EventHandle eventHandle in _eventHandles)
+            if (e.ParentId.Equals(transform.parent.GetInstanceID()))
             {
-                eventService.RemoveListener(eventHandle);
+                _playerAnimator.SetTrigger(Die);
             }
-
-            _eventHandles.Clear();
         }
     }
 }
