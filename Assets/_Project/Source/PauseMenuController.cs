@@ -36,6 +36,7 @@ namespace JIH
         private void CloseButtonClickHandler()
         {
             AsyncOperation openSceneOperationAsync = ScreenService.UnLoadSceneAsync(_thisScreenRef);
+            openSceneOperationAsync.completed += operation => new RequestPauseEvent(false).Invoke(this);
         }
 
         private void MainMenuButtonClickHandler()

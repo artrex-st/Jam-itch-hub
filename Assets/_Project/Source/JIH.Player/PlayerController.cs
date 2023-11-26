@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using JIH.Input;
 using JIH.Levels;
 using Sirenix.OdinInspector;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -72,6 +73,7 @@ namespace JIH.Player
         private float _timeJumpWasPressed;
         private InputManager _inputManager;
         private readonly List<EventHandle> _eventHandles = new();
+        private bool _gameIsPause = true;
 
         private bool HasBufferedJump => _bufferedJumpUsable && _time < _timeJumpWasPressed + _currentStats.JumpBuffer;
         private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGrounded + _currentStats.CoyoteTime;
@@ -88,11 +90,21 @@ namespace JIH.Player
 
         private void Update()
         {
+            if (_gameIsPause)
+            {
+                return;
+            }
+
             _time += Time.deltaTime;
         }
 
         private void FixedUpdate()
         {
+            if (_gameIsPause)
+            {
+                return;
+            }
+
             CheckCollisions();
             HandleJump();
             HandleDirection();
@@ -114,8 +126,9 @@ namespace JIH.Player
             _eventHandles.Add(StartInputYEvent.AddListener(HandlerStartInputYEvent));
             _eventHandles.Add(PerformInputYEvent.AddListener(HandlerPerformInputYEvent));
             _eventHandles.Add(CancelInputYEvent.AddListener(HandlerCancelInputYEvent));
-            
+
             _eventHandles.Add(RequestInputPressEvent.AddListener(HandlerRequestInputPressEvent));
+            _eventHandles.Add(RequestPauseEvent.AddListener(HandlerRequestPauseEvent));
             _currentStats = _stats[0];
         }
 
@@ -190,11 +203,9 @@ namespace JIH.Player
         {
             if (isDashing)
             {
-                Debug.Log($"Handle Dash");
                 return;
             }
 
-            Debug.Log($"Handle Direction");
             if (_frameInput.Move.x == 0)
             {
                 float deceleration = _grounded ? _currentStats.GroundDeceleration : _currentStats.AirDeceleration;
@@ -292,6 +303,14 @@ namespace JIH.Player
             {
                 Dash().Forget();
             }
+        }
+
+        private void HandlerRequestPauseEvent(ref EventContext context, in RequestPauseEvent e)
+        {
+            _gameIsPause = e.IsGamePause;
+            _rigidbody2D.velocity = Vector2.zero;
+            _rigidbody2D.isKinematic = _gameIsPause;
+            _inputManager.enabled = !_gameIsPause;
         }
 
         private void GatherInput()

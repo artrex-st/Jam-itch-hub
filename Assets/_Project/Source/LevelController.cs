@@ -1,10 +1,15 @@
+using Cinemachine;
 using Coimbra.Services.Events;
+using Cysharp.Threading.Tasks;
 using JIH.Levels;
+using JIH.Player;
 using JIH.ScreenService;
+using Sirenix.OdinInspector;
 using Source;
 using System;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,8 +27,24 @@ namespace JIH
 
     public readonly partial struct RequestEndLevelEvent : IEvent { }
 
+    public readonly partial struct RequestPauseEvent : IEvent
+    {
+        public readonly bool IsGamePause;
+
+        public RequestPauseEvent(bool isGamePause)
+        {
+            IsGamePause = isGamePause;
+        }
+    }
+
     public class LevelController : BaseScreen
     {
+        [FoldoutGroup("Spawn Config")]
+        [SerializeField] private PlayerController _player;
+        [FoldoutGroup("Spawn Config")]
+        [SerializeField] private Transform _playerSpawnPoint;
+        [FoldoutGroup("Spawn Config")]
+        [SerializeField] private CinemachineVirtualCamera _vitualCamera;
         [SerializeField] private TextMeshProUGUI _frameTitle;
         [SerializeField] private Button _pauseMenuButton;
         [SerializeField] private ScreenReference _nextLevelScreenRef;
@@ -47,11 +68,21 @@ namespace JIH
 
             EventHandles.Add(RequestLevelNameEvent.AddListener(RequestLevelNameEventHandler));
             EventHandles.Add(RequestEndLevelEvent.AddListener(HandlerRequestEndLevelEvent));
+            StartGameAsync();
+        }
+
+        private async void StartGameAsync()
+        {
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
+            PlayerController player = Instantiate(_player, _playerSpawnPoint.position, quaternion.identity);
+            _vitualCamera.Follow = player.transform;
+            _vitualCamera.LookAt = player.transform;
+            new RequestPauseEvent(false).Invoke(this);
         }
 
         private void SettingsButtonClickHandler()
         {
-            //TODO: pause the game event
+            new RequestPauseEvent(true).Invoke(this);
             ScreenService.LoadAdditiveSceneAsync(_pauseMenuScreenRef);
         }
 
@@ -62,7 +93,7 @@ namespace JIH
 
         private void HandlerRequestEndLevelEvent(ref EventContext context, in RequestEndLevelEvent e)
         {
-            //TODO: pause the game event
+            //new RequestPauseEvent(true).Invoke(this);
 
             if (SaveDataService.GameData.CurrentLevel >= SaveDataService.GameData.UnlockedLevels.Count)
             {
