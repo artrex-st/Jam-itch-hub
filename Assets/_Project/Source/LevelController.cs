@@ -141,7 +141,7 @@ namespace JIH
         private void HandlerRequestPlayerDieEvent(ref EventContext context, in RequestPlayerDieEvent e)
         {
             _activePlayer.gameObject.Dispose(true);
-            StartGameAsync();
+            ScreenService.LoadSingleScene(ScreenService.Levels[SaveDataService.GameData.CurrentLevel]);
         }
     }
 }
